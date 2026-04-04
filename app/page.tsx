@@ -14,8 +14,8 @@ import {
   LuArrowUp,
   LuPencilRuler,
 } from "react-icons/lu";
-import LightBlueprintBackground from "@/components/ui/Background-light";
-import PaintStrokeDivider from "@/components/ui/PaintStrokeDivider";
+
+import HandymanDivider from "@/components/ui/HandymanDivider";
 
 export default function Home() {
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -122,7 +122,6 @@ export default function Home() {
       <div className="relative min-h-screen flex flex-col">
         {/* === START: HERO SECTION === */}
         <section className="relative h-[70vh] flex flex-col justify-center items-center text-white overflow-hidden p-8">
-          <LightBlueprintBackground />
           <Image
             src={"/assets/heading-bg.jpg"}
             fill
@@ -220,7 +219,7 @@ export default function Home() {
 
         {/* === START: PAINT STROKE DIVIDER === */}
         {/* This SVG bridges the white About section and the dark Services section */}
-        <PaintStrokeDivider />
+        <HandymanDivider />
         {/* === END: PAINT STROKE DIVIDER === */}
 
         {/* === START: SERVICES SECTION === */}
@@ -340,7 +339,7 @@ export default function Home() {
         </div>
       </section>
       {/* === END: CUSTOM PROJECT CTA === */}
-      <PaintStrokeDivider />
+      <HandymanDivider />
       {/* === FLOATING BACK TO TOP BUTTON === */}
       <AnimatePresence>
         {showTopBtn && (

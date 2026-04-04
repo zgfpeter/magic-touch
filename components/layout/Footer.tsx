@@ -33,7 +33,7 @@ export default function Footer() {
               <Image
                 src="/assets/company-logo.jpg"
                 width={200}
-                height={150}
+                height={100}
                 alt="Magic Touch Logo"
                 className="object-contain rounded-md flex-shrink-0 bg-white"
                 priority

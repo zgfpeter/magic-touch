@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     // Added 'sticky top-0' so the navigation stays visible when scrolling
-    <header className="bg-white shadow-md relative z-50 sticky top-0">
+    <header className="bg-slate-100 shadow-md relative z-50 sticky top-0">
       {/* Container wrapper for maximum width and padding */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -34,7 +34,7 @@ export default function Header() {
               <Image
                 src={"/assets/company-logo.jpg"}
                 width={150}
-                height={60}
+                height={75}
                 alt="Magic Touch Logo"
                 className="w-auto h-12 md:h-14 object-contain rounded-md"
                 priority
@@ -182,7 +182,7 @@ export default function Header() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="absolute top-full left-0 w-full bg-slate-100 flex flex-col pt-16 pb-8 overflow-hidden shadow-2xl md:hidden border-t border-slate-200 justify-evenly"
           >
-            <nav className="flex flex-col items-center gap-10 font-bold text-2xl text-slate-700">
+            <nav className="flex flex-col items-center gap-10 font-bold text-xl text-slate-700">
               <Link
                 href="/"
                 onClick={() => setMenuOpen(false)}

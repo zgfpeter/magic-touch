@@ -164,7 +164,7 @@ export default function AboutPage() {
               Get a Free Quote
             </Link>
             <Link
-              href="/booking"
+              href="/contact"
               className="bg-slate-800 text-white font-bold text-lg px-8 py-4 rounded-md border border-slate-700 hover:bg-slate-700 transition-colors"
             >
               Book an Appointment
