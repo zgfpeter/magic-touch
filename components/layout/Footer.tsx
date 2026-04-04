@@ -31,7 +31,7 @@ export default function Footer() {
               className="flex items-center gap-3 mb-6 w-fit hover:opacity-90 transition-opacity"
             >
               <Image
-                src="/assets/logo.jpg"
+                src="/assets/company-logo.jpg"
                 width={200}
                 height={150}
                 alt="Magic Touch Logo"

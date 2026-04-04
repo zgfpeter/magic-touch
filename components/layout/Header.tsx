@@ -32,7 +32,7 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-3">
               {/* object-contain prevents the logo from squishing! */}
               <Image
-                src={"/assets/logo.jpg"}
+                src={"/assets/company-logo.jpg"}
                 width={150}
                 height={60}
                 alt="Magic Touch Logo"
