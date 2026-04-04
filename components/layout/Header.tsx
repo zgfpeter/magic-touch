@@ -21,6 +21,30 @@ export default function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Close the mobile menu automatically if the user resizes...
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // NEW: Add a class to the body when the menu opens
+  useEffect(() => {
+    if (menuOpen) {
+      // Prevents the background from scrolling when menu is open!
+      document.body.style.overflow = "hidden";
+      // Adds a tag we can target with CSS
+      document.body.classList.add("mobile-menu-open");
+    } else {
+      document.body.style.overflow = "unset";
+      document.body.classList.remove("mobile-menu-open");
+    }
+  }, [menuOpen]);
+
   return (
     // Added 'sticky top-0' so the navigation stays visible when scrolling
     <header className="bg-slate-100 shadow-md relative z-50 sticky top-0">
