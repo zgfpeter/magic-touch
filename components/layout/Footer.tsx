@@ -117,13 +117,13 @@ export default function Footer() {
                 Home
               </Link>
               <Link
-                href="/#services"
+                href="/services"
                 className="hover:text-handy-orange transition-colors"
               >
                 Services
               </Link>
               <Link
-                href="/about"
+                href="/about-us"
                 className="hover:text-handy-orange transition-colors"
               >
                 About Us
@@ -137,7 +137,7 @@ export default function Footer() {
             </div>
 
             <Link
-              href="/booking"
+              href="/contact"
               className="bg-handy-orange text-white font-bold rounded-md px-6 py-3 hover:bg-orange-600 transition-colors w-fit shadow-md text-center"
             >
               Book Appointment

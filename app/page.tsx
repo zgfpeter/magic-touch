@@ -12,6 +12,7 @@ import {
   LuFence,
   LuShieldCheck,
   LuArrowUp,
+  LuPencilRuler,
 } from "react-icons/lu";
 import LightBlueprintBackground from "@/components/ui/Background-light";
 import PaintStrokeDivider from "@/components/ui/PaintStrokeDivider";
@@ -296,6 +297,49 @@ export default function Home() {
         </section>
         {/* === END: SERVICES SECTION === */}
       </div>
+      {/* === START: CUSTOM PROJECT CTA === */}
+      <section className=" py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="relative overflow-hidden rounded-3xl bg-slate-100 px-8 py-16 shadow-2xl sm:px-16 md:py-24">
+            {/* Decorative Background Element */}
+            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-handy-orange blur-3xl" />
+            <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-handy-blue blur-3xl" />
+
+            <div className="relative flex flex-col items-center text-center">
+              {/* Updated Icon and Label */}
+              <div className="flex items-center gap-2 mb-6 bg-slate-800/90 px-4 py-2 rounded-full border border-slate-700">
+                <LuPencilRuler className="text-handy-orange" size={20} />
+                <span className="text-slate-200 font-bold tracking-widest text-xs uppercase">
+                  CUSTOM SOLUTIONS
+                </span>
+              </div>
+
+              <h2 className="text-3xl md:text-5xl font-extrabold  mb-6 leading-tight">
+                Do you have a custom project? <br />
+                <span className="text-handy-orange">
+                  We might be able to help.
+                </span>
+              </h2>
+
+              <p className="text-lg text-slate-900 mb-10 max-w-2xl leading-relaxed">
+                We understand that not every home project fits into a neat
+                category. From unique architectural repairs to creative
+                installations tailored specifically to your lifestyle, we thrive
+                on the &quot;out-of-the-box&quot; tasks that make your house
+                feel like a home.
+              </p>
+
+              <Link
+                href="/contact"
+                className="bg-handy-orange text-white border border-white/20 font-bold text-lg px-10 py-4 rounded-xl hover:bg-white/20 transition-all text-center backdrop-blur-sm"
+              >
+                Send us a message
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* === END: CUSTOM PROJECT CTA === */}
       <PaintStrokeDivider />
       {/* === FLOATING BACK TO TOP BUTTON === */}
       <AnimatePresence>
