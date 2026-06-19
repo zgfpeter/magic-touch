@@ -33,7 +33,6 @@ const projectsData = [
       "Heritage Wood Trim Restoration",
       "Premium Interior Painting",
     ],
-    // 4 uniform portrait tiles
     images: [
       "/assets/interior-painter.jpg",
       "/assets/saemi-kim-4hcTkOw-EKE-unsplash.jpg",
@@ -53,7 +52,6 @@ const projectsData = [
       "Weather-Resistant Exterior Painting",
       "Gutter & Fascia Board Refresh",
     ],
-    // 4 uniform portrait tiles
     images: [
       "/assets/exterior-painter.jpg",
       "/assets/powerwashing.jpg",
@@ -73,7 +71,6 @@ const projectsData = [
       "Hardware Installation",
       "Final Precision Adjustments",
     ],
-    // 4 uniform portrait tiles
     images: [
       "/assets/saemi-kim-4hcTkOw-EKE-unsplash.jpg",
       "/assets/interior-painter.jpg",
@@ -82,6 +79,71 @@ const projectsData = [
     ],
   },
 ];
+
+// === NEW INTERACTIVE GALLERY COMPONENT ===
+// Manages local state for each individual project's image viewer
+const ProjectGallery = ({
+  images,
+  title,
+}: {
+  images: string[];
+  title: string;
+}) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <div className="w-full lg:w-7/12 flex flex-col gap-3 lg:self-center">
+      {/* Featured Main Image */}
+      <div className="relative aspect-video sm:aspect-[4/3] w-full rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900 group">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={images[activeIndex]}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              alt={`${title} - Featured Image`}
+              className="object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-700"
+              priority
+            />
+            {/* Subtle vignette for premium feel */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-slate-950/60 pointer-events-none" />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Thumbnail Navigation Strip */}
+      <div className="grid grid-cols-4 gap-2 sm:gap-3">
+        {images.map((imgSrc, idx) => (
+          <button
+            key={idx}
+            onClick={() => setActiveIndex(idx)}
+            className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
+              activeIndex === idx
+                ? "border-handy-orange opacity-100 scale-[0.98]"
+                : "border-slate-800 opacity-40 hover:opacity-100 hover:border-slate-600"
+            }`}
+            aria-label={`View ${title} image ${idx + 1}`}
+          >
+            <Image
+              src={imgSrc}
+              fill
+              sizes="(max-width: 768px) 25vw, 15vw"
+              alt={`${title} thumbnail ${idx + 1}`}
+              className="object-cover"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default function ProjectsPage() {
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -150,7 +212,7 @@ export default function ProjectsPage() {
                 {/* Text Details Side */}
                 <div className="w-full lg:w-5/12 flex flex-col justify-center">
                   <div className="flex items-center gap-2 text-handy-orange font-bold uppercase tracking-wider text-sm mb-4">
-                    <LuMapPin size={18} />
+                    <LuMapPin size={18} aria-hidden="true" />
                     <span>{project.location}</span>
                   </div>
 
@@ -176,6 +238,7 @@ export default function ProjectsPage() {
                             <LuCheck
                               className="w-4 h-4 text-handy-orange"
                               strokeWidth={3}
+                              aria-hidden="true"
                             />
                           </div>
                           <span className="text-slate-400 font-medium leading-relaxed group-hover:text-slate-200 transition-colors">
@@ -187,25 +250,8 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                {/* Expanded 4-Photo Tall Tile Gallery */}
-                <div className="w-full lg:w-7/12 grid grid-cols-2 gap-4 sm:gap-6 group lg:self-center">
-                  {project.images.map((imgSrc, imgIdx) => (
-                    <motion.div
-                      key={imgIdx}
-                      whileHover={{ scale: 1.03 }}
-                      transition={{ duration: 0.3 }}
-                      className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-slate-800 shadow-xl bg-slate-900"
-                    >
-                      <Image
-                        src={imgSrc}
-                        fill
-                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 30vw, 25vw"
-                        alt={`${project.title} completion photo ${imgIdx + 1}`}
-                        className="object-cover opacity-70 hover:opacity-100 transition-all duration-500 mix-blend-luminosity hover:mix-blend-normal"
-                      />
-                    </motion.div>
-                  ))}
-                </div>
+                {/* INJECTED NEW INTERACTIVE GALLERY COMPONENT */}
+                <ProjectGallery images={project.images} title={project.title} />
               </motion.div>
             ))}
           </div>
@@ -227,7 +273,7 @@ export default function ProjectsPage() {
               <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-blue-600 opacity-10 blur-[80px]" />
 
               <div className="flex items-center justify-center gap-2 mb-6 text-handy-orange font-bold tracking-widest text-xs uppercase bg-slate-950/80 px-5 py-2.5 rounded-full border border-slate-700 shadow-inner z-10">
-                <LuCamera size={18} />
+                <LuCamera size={18} aria-hidden="true" />
                 <span>Like what you see?</span>
               </div>
 
@@ -246,7 +292,7 @@ export default function ProjectsPage() {
               <div className="flex flex-col sm:flex-row gap-5 relative z-10">
                 <Link
                   href="/contact"
-                  className="bg-handy-orange text-white font-extrabold text-lg px-10 py-4 rounded-full shadow-[0_0_20px_rgba(234,88,12,0.4)] hover:shadow-[0_0_30px_rgba(234,88,12,0.6)] hover:-translate-y-1 transition-all"
+                  className="bg-handy-orange text-white font-extrabold text-lg px-10 py-4 rounded-full shadow-[0_0_20px_rgba(234,88,12,0.4)] hover:shadow-[0_0_30px_rgba(234,88,12,0.6)] hover:-translate-y-1 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
                   Request a Free Quote
                 </Link>
@@ -265,10 +311,10 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 p-4 bg-handy-orange text-white rounded-full shadow-[0_0_20px_rgba(234,88,12,0.5)] hover:bg-orange-600 transition-colors z-50 flex items-center justify-center back-to-top-btn"
-            aria-label="Scroll to top"
+            className="fixed bottom-8 right-8 p-4 bg-handy-orange text-white rounded-full shadow-[0_0_20px_rgba(234,88,12,0.5)] hover:bg-orange-600 transition-colors z-50 flex items-center justify-center back-to-top-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            aria-label="Scroll back to top"
           >
-            <LuArrowUp size={24} />
+            <LuArrowUp size={24} aria-hidden="true" />
           </motion.button>
         )}
       </AnimatePresence>
