@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -12,77 +13,28 @@ import {
   LuFence,
   LuShieldCheck,
   LuArrowUp,
-  LuPencilRuler,
   LuCamera,
-  LuStar,
-  LuMessageSquareQuote,
-  LuChevronDown, // <-- Added for the expand button
+  LuCircleCheck,
+  LuUsers,
+  LuMessageSquare,
+  LuMapPin,
+  LuArrowRight, // <-- Added for location badges
 } from "react-icons/lu";
 
 import HandymanDivider from "@/components/ui/HandymanDivider";
 
-// --- DATA OUTSIDE COMPONENT TO PREVENT TURBOPACK CRASHES ---
-
-// UPDATED: Added `projectImg` to each testimonial for the dynamic expansion
-const testimonials = [
-  {
-    id: 1,
-    name: "Sarah Jenkins",
-    role: "Homeowner, Ballsbridge",
-    text: "Magic Touch completely transformed our living room. The attention to detail, crisp paint lines, and daily clean-up were incredible.",
-    rating: 5,
-    projectImg: "/assets/interior-painter.jpg",
-  },
-  {
-    id: 2,
-    name: "David O'Connor",
-    role: "Property Manager",
-    text: "Reliable, on-time, and perfectly executed. They are my go-to team for all property maintenance and tenant repair requests.",
-    rating: 5,
-    projectImg: "/assets/repairs.jpg",
-  },
-  {
-    id: 3,
-    name: "Emma Byrne",
-    role: "Homeowner, Rathmines",
-    text: "From the initial quote to the final walk-through, absolute professionals. The exterior paint job looks stunning and has held up perfectly.",
-    rating: 5,
-    projectImg: "/assets/exterior-painter.jpg",
-  },
-  {
-    id: 4,
-    name: "Michael Clarke",
-    role: "Cafe Owner",
-    text: "Fixed our plumbing issues and patched the drywall so well you would never know there was a hole. Highly recommended for commercial fixes.",
-    rating: 5,
-    projectImg: "/assets/saemi-kim-4hcTkOw-EKE-unsplash.jpg",
-  },
-];
-
 const portfolio = [
   {
     id: 1,
-    title: "Living Room Refresh",
-    category: "Interior Painting",
-    img: "/assets/interior-painter.jpg",
+    title: "Studio from the ground up.",
+    category: "New Build",
+    img: "/assets/repairs.jpg",
   },
   {
     id: 2,
-    title: "Exterior Restoration",
-    category: "Weatherproofing",
-    img: "/assets/exterior-painter.jpg",
-  },
-  {
-    id: 3,
-    title: "Custom Woodwork",
-    category: "Handyman Services",
-    img: "/assets/saemi-kim-4hcTkOw-EKE-unsplash.jpg",
-  },
-  {
-    id: 4,
-    title: "Driveway Revitalization",
-    category: "Power Washing",
-    img: "/assets/powerwashing.jpg",
+    title: "Interior refresh",
+    category: "Painting & Decorating",
+    img: "/assets/repairs.jpg",
   },
 ];
 
@@ -90,9 +42,9 @@ const services = [
   {
     Icon: LuHammer,
     iconColor: "text-amber-500",
-    title: "Handyman Services",
-    desc: "From furniture assembly and broken light fixtures to sticking doors, we provide reliable, efficient solutions for the everyday repairs your home needs.",
-    imageUrl: "/assets/saemi-kim-4hcTkOw-EKE-unsplash.jpg",
+    title: "Construction & Structural",
+    desc: "From groundworks to final product. We handle reinforced concrete, block wall construction, and precision timber frame structures across the Dublin area.",
+    imageUrl: "/assets/repairs.jpg",
     animation: {
       rest: { rotate: 0 },
       hover: {
@@ -102,11 +54,25 @@ const services = [
     },
   },
   {
+    Icon: LuHouse,
+    iconColor: "text-blue-400",
+    title: "Garden Rooms & Granny Flats",
+    desc: "Expand your living space with our specialized builds, including custom garden rooms, studio apartments, and fully equipped granny flats tailored to Dublin properties.",
+    imageUrl: "/assets/repairs.jpg",
+    animation: {
+      rest: { scale: 1 },
+      hover: {
+        scale: [1, 1.15, 0.95, 1.05, 1],
+        transition: { duration: 0.5 },
+      },
+    },
+  },
+  {
     Icon: LuPaintbrush,
     iconColor: "text-cyan-500",
-    title: "Interior Painting",
-    desc: "Transform your living spaces with our professional interior painting. We deliver crisp lines, immaculate prep work, and flawless finishes with zero mess.",
-    imageUrl: "/assets/interior-painter.jpg",
+    title: "Interior Finishes",
+    desc: "Complete interior transformations including plasterboard installation, joint taping and skimming, painting and decorating, tiling, laminate flooring, and door/window installations.",
+    imageUrl: "/assets/repairs.jpg",
     animation: {
       rest: { x: 0, rotate: 0 },
       hover: {
@@ -117,24 +83,10 @@ const services = [
     },
   },
   {
-    Icon: LuHouse,
-    iconColor: "text-blue-400",
-    title: "Exterior Refresh",
-    desc: "Protect your home from the Irish weather. Our durable, weather-resistant painting, masonry touch-ups, and deck staining keep your property looking its best year-round.",
-    imageUrl: "/assets/exterior-painter.jpg",
-    animation: {
-      rest: { scale: 1 },
-      hover: {
-        scale: [1, 1.15, 0.95, 1.05, 1],
-        transition: { duration: 0.5 },
-      },
-    },
-  },
-  {
     Icon: LuWrench,
     iconColor: "text-stone-400",
-    title: "General Home Repairs",
-    desc: "From repairing damaged drywall to fixing squeaky hinges and leaky faucets, we handle the essential maintenance that keeps your home functioning perfectly.",
+    title: "Property Maintenance",
+    desc: "Keep your property in top shape with our maintenance services, covering everything from small construction jobs to general repairs for Dublin homeowners and landlords.",
     imageUrl: "/assets/repairs.jpg",
     animation: {
       rest: { rotate: 0 },
@@ -144,9 +96,9 @@ const services = [
   {
     Icon: LuFence,
     iconColor: "text-emerald-500",
-    title: "Power Washing",
-    desc: "Revitalize your driveways, patios, and fences. Our thorough power washing service removes stubborn grime, moss, and algae, instantly restoring your outdoor surfaces.",
-    imageUrl: "/assets/powerwashing.jpg",
+    title: "Exterior Cleaning & Power Washing",
+    desc: "Gutter cleaning up to 2 storeys, power washing, and revitalization for driveways, patios, walls, and exterior surfaces.",
+    imageUrl: "/assets/repairs.jpg",
     animation: {
       rest: { x: 0, y: 0 },
       hover: {
@@ -156,6 +108,15 @@ const services = [
       },
     },
   },
+];
+
+const whyChooseUs = [
+  "All-in-One Project Management",
+  "Uncompromising Quality Standards",
+  "Fully Insured & Safety Certified",
+  "Rapid, Team-Based Execution",
+  "Flawless Attention To Detail",
+  "Clean & Respectful Site Practices",
 ];
 
 interface GoogleReview {
@@ -178,10 +139,6 @@ export default function Home() {
   const [averageRating, setAverageRating] = useState<number>(0);
   const [loading, setLoading] = useState(true);
 
-  // NEW STATE: Tracks which testimonial card is currently expanded
-  const [expandedTestimonial, setExpandedTestimonial] = useState<number | null>(
-    null,
-  );
   useEffect(() => {
     const handleScroll = () => {
       setShowTopBtn(window.scrollY > 400);
@@ -214,439 +171,390 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-200 relative selection:bg-handy-orange selection:text-white">
-      <div className="relative min-h-screen flex flex-col">
-        {/* === START: HERO SECTION === */}
-        <section className="relative h-[80vh] flex flex-col justify-center items-center text-white overflow-hidden px-6">
-          <Image
-            src={"/assets/heading-bg.jpg"}
-            fill
-            sizes="100vw"
-            alt="Professional home repair and painting services"
-            className="object-cover -z-10 opacity-40 mix-blend-luminosity"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950 -z-0" />
+    <main className="min-h-screen bg-slate-950 text-slate-200 relative selection:bg-handy-orange selection:text-white pt-20">
+      {/* === HERO SECTION === */}
+      <section
+        className="relative pt-20 flex flex-col justify-center items-center text-white overflow-hidden"
+        aria-label="Dublin Construction Company Introduction"
+      >
+        <Image
+          src="/assets/heading-bg.jpg"
+          fill
+          sizes="100vw"
+          alt="Professional construction site in Dublin"
+          className="object-cover -z-10 opacity-30 mix-blend-luminosity"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950 -z-10" />
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative z-10 max-w-5xl text-center flex flex-col items-center gap-6"
-          >
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight drop-shadow-2xl">
-              Precision <span className="text-handy-orange">HANDYMAN</span>{" "}
-              <br className="hidden md:block" />&{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600">
-                PAINTING
-              </span>{" "}
-              Services
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 max-w-5xl text-center flex flex-col items-center gap-6"
+        >
+          {/* SEO Location Badge */}
+          <div className="flex items-center gap-2 bg-slate-950/80 px-4 py-2 rounded-full border border-slate-800 shadow-inner">
+            <LuMapPin
+              className="text-handy-orange"
+              size={16}
+              aria-hidden="true"
+            />
+            <span className="text-slate-300 font-semibold tracking-widest text-xs uppercase">
+              Serving All of Dublin & Surrounding Areas
+            </span>
+          </div>
+
+          <div className="relative p-30 w-full overflow-hidden rounded-3xl border border-slate-700/60 shadow-2xl inline-block">
+            <Image
+              src="/assets/repairs.jpg"
+              fill
+              alt="Prime Build Construction Dublin Background"
+              className="object-cover -z-10 opacity-50 mix-blend-luminosity"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/60 to-slate-950/90 -z-10" />
+
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight">
+              Prime Build{" "}
+              <span className="text-handy-orange">Construction</span>
             </h1>
-            <p className="text-lg md:text-2xl text-slate-400 leading-relaxed max-w-3xl font-light">
-              Exceptional craftsmanship for modern homes. From precise interior
-              painting to essential structural repairs, we treat your property
-              with absolute care.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-5">
-              <Link
-                href="/contact"
-                className="flex items-center justify-center gap-3 py-4 px-10 rounded-full text-white bg-handy-orange font-bold shadow-[0_0_30px_rgba(234,88,12,0.4)] hover:shadow-[0_0_40px_rgba(234,88,12,0.6)] hover:-translate-y-1 transition-all"
-              >
-                BOOK ONLINE
-              </Link>
-              <Link
-                href="tel:+1234567890"
-                className="flex items-center justify-center gap-3 py-4 px-10 rounded-full text-white border border-slate-700 bg-slate-900/50 backdrop-blur-md font-bold hover:bg-slate-800 transition-all"
-              >
-                <LuPhone size={20} />
-                CALL US NOW
-              </Link>
-            </div>
-          </motion.div>
-        </section>
-        {/* === END: HERO SECTION === */}
-
-        {/* === START: ABOUT US TEASER === */}
-        <section className="bg-slate-950 py-24 border-b border-slate-900">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-col lg:flex-row items-center gap-16">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="w-full lg:w-1/2 relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-slate-800 group"
-              >
-                <Image
-                  src="/assets/about-us.jpg"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-1000 opacity-80 group-hover:opacity-100"
-                  alt="Team working on a home repair"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="w-full lg:w-1/2 flex flex-col items-start"
-              >
-                <div className="flex items-center gap-2 mb-4 text-handy-orange font-bold tracking-widest text-xs uppercase bg-orange-950/30 px-4 py-2 rounded-full border border-orange-900/50">
-                  <LuShieldCheck size={18} />
-                  <span>Fully Insured & Local</span>
-                </div>
-
-                <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight tracking-tighter">
-                  Your Trusted Neighbors in{" "}
-                  <span className="text-slate-500">Home Repair.</span>
-                </h2>
-
-                <p className="text-lg text-slate-400 mb-6 leading-relaxed font-light">
-                  We know that inviting a contractor into your home requires
-                  trust. As a locally owned business, we built Magic Touch on
-                  three simple principles: show up on time, do the job right the
-                  first time, and leave the workspace cleaner than we found it.
-                </p>
-
-                <Link
-                  href="/about-us"
-                  className="group flex items-center gap-3 text-white font-bold text-lg mt-4 border-b border-handy-orange pb-1 hover:text-handy-orange transition-colors"
-                >
-                  Read Our Full Story
-                  <span className="group-hover:translate-x-2 transition-transform">
-                    →
-                  </span>
-                </Link>
-              </motion.div>
-            </div>
           </div>
-        </section>
-        {/* === END: ABOUT US TEASER === */}
-
-        {/* === START: MODERN ACCORDION GALLERY === */}
-        <section className="py-24 bg-slate-900 relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-handy-orange opacity-[0.03] blur-[100px] rounded-full pointer-events-none" />
-
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-              <div>
-                <div className="flex items-center gap-3 mb-4 text-handy-orange font-bold tracking-widest text-xs uppercase">
-                  <LuCamera size={18} />
-                  <span>Featured Work</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tighter">
-                  Recent <span className="text-slate-500">Projects.</span>
-                </h2>
-              </div>
-              <Link
-                href="/services"
-                className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 font-bold"
-              >
-                View All Services <span className="text-handy-orange">→</span>
-              </Link>
-            </div>
-
-            <div className="flex h-[400px] md:h-[500px] w-full gap-2 md:gap-4">
-              {portfolio.map((item, index) => {
-                const isActive = activeProject === index;
-                return (
-                  <motion.div
-                    key={item.id}
-                    onHoverStart={() => setActiveProject(index)}
-                    onClick={() => setActiveProject(index)}
-                    className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-700 ease-in-out border border-slate-800 ${
-                      isActive
-                        ? "flex-[4] md:flex-[5] shadow-2xl"
-                        : "flex-[1] opacity-60 hover:opacity-100"
-                    }`}
-                  >
-                    <Image
-                      src={item.img}
-                      fill
-                      sizes="(max-width: 1200px) 25vw, 400px"
-                      alt={item.title}
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80" />
-
-                    <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full flex flex-col justify-end h-full">
-                      <motion.div
-                        initial={false}
-                        animate={{
-                          opacity: isActive ? 1 : 0,
-                          y: isActive ? 0 : 20,
-                        }}
-                        transition={{ duration: 0.4, delay: 0.1 }}
-                        className="truncate"
-                      >
-                        <span className="text-handy-orange font-bold text-sm tracking-wider uppercase mb-2 block">
-                          {item.category}
-                        </span>
-                        <h3 className="text-2xl md:text-3xl font-extrabold text-white truncate">
-                          {item.title}
-                        </h3>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-        {/* === END: MODERN ACCORDION GALLERY === */}
-
-        <HandymanDivider />
-
-        {/* === START: SERVICES SECTION === */}
-        <section id="services" className="bg-slate-950 pb-32 pt-16 flex-grow">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-20 text-center">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tighter">
-                Our Core <span className="text-slate-500">Expertise.</span>
-              </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-handy-orange to-orange-400 mx-auto rounded-full"></div>
-            </div>
-
-            <div className="flex flex-col gap-8 md:gap-16">
-              {services.map((service, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6 }}
-                  whileHover="hover"
-                  className={`flex flex-col ${
-                    idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  } bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl overflow-hidden group hover:border-slate-700 transition-colors shadow-2xl cursor-pointer`}
-                >
-                  <div className="relative w-full md:w-5/12 h-[300px] md:h-auto overflow-hidden">
-                    {service.imageUrl ? (
-                      <Image
-                        src={service.imageUrl}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 40vw"
-                        alt={service.title}
-                        className="object-cover object-center transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100 mix-blend-luminosity group-hover:mix-blend-normal"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500">
-                        Image Coming Soon
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-transparent md:hidden" />
-                  </div>
-
-                  <div className="w-full md:w-7/12 p-8 md:p-14 flex flex-col justify-center">
-                    <div className="mb-8 p-4 bg-slate-950 w-fit rounded-2xl border border-slate-800 group-hover:border-slate-600 transition-colors shadow-inner">
-                      <motion.div variants={service.animation}>
-                        <service.Icon
-                          className={`w-8 h-8 ${service.iconColor}`}
-                        />
-                      </motion.div>
-                    </div>
-
-                    <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">
-                      {service.title}
-                    </h3>
-
-                    <p className="text-slate-400 text-lg leading-relaxed mb-8 font-light">
-                      {service.desc}
-                    </p>
-
-                    <Link
-                      href="/contact"
-                      className="flex items-center gap-2 text-handy-orange font-bold hover:text-white transition-colors w-fit group/btn uppercase tracking-wider text-sm"
-                    >
-                      Get a Free Quote
-                      <span className="group-hover/btn:translate-x-2 transition-transform">
-                        →
-                      </span>
-                    </Link>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-        {/* === END: SERVICES SECTION === */}
-
-        {/* === START: CUSTOM PROJECT CTA === */}
-        <section className="py-24 px-6 bg-slate-950 border-t border-slate-900">
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="relative overflow-hidden rounded-3xl bg-slate-900 border border-slate-800 px-8 py-16 shadow-2xl sm:px-16 md:py-24"
+          <p className="text-base sm:text-lg md:text-2xl text-slate-400 leading-relaxed max-w-3xl font-light">
+            Reliable Dublin construction company delivering high-quality work,
+            from groundworks to the final product. Whether it&apos;s a small
+            repair or a full build, we bring exact precision and enduring
+            craftsmanship to every project.
+          </p>
+          <div className="mt-4 flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center py-4 px-10 rounded-full text-white bg-handy-orange font-bold shadow-lg shadow-orange-950/40 hover:bg-orange-600 active:scale-98 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:ring-handy-orange"
             >
-              <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-handy-orange opacity-20 blur-[80px]" />
-              <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-blue-600 opacity-10 blur-[80px]" />
+              REQUEST A QUOTE
+            </Link>
+            <Link
+              href="tel:+1234567890"
+              className="inline-flex items-center justify-center gap-3 py-4 px-10 rounded-full text-white border border-slate-800 bg-slate-900/50 backdrop-blur-md font-bold hover:bg-slate-800 active:scale-98 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:ring-handy-orange"
+            >
+              <LuPhone size={20} aria-hidden="true" />
+              <span>CALL US NOW</span>
+            </Link>
+          </div>
+        </motion.div>
+      </section>
 
-              <div className="relative flex flex-col items-center text-center z-10">
-                <div className="flex items-center gap-2 mb-8 bg-slate-950/80 px-5 py-2.5 rounded-full border border-slate-700 shadow-inner">
-                  <LuPencilRuler className="text-handy-orange" size={20} />
-                  <span className="text-slate-300 font-bold tracking-widest text-xs uppercase">
-                    Custom Solutions
-                  </span>
-                </div>
-
-                <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">
-                  Have a custom project? <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600">
-                    We can build it.
-                  </span>
-                </h2>
-
-                <p className="text-lg text-slate-400 mb-10 max-w-2xl leading-relaxed font-light">
-                  We understand that not every home project fits into a neat
-                  category. From unique architectural repairs to creative
-                  installations tailored specifically to your lifestyle, we
-                  thrive on the &quot;out-of-the-box&quot; tasks.
-                </p>
-
-                <Link
-                  href="/contact"
-                  className="bg-white text-slate-950 font-extrabold text-lg px-10 py-4 rounded-full hover:bg-slate-200 transition-all text-center shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:scale-105"
-                >
-                  Send us a message
-                </Link>
-              </div>
+      {/* === ABOUT US TEASER === */}
+      <section
+        className="bg-slate-950 py-20  md:py-28 border-b border-slate-900"
+        aria-labelledby="about-heading"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="w-full lg:w-1/2 relative h-[300px] sm:h-[400px] lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-slate-900 group"
+            >
+              <Image
+                src="/assets/about-us.jpg"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                alt="Dublin construction professionals on site"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
             </motion.div>
-          </div>
-        </section>
-        {/* === END: CUSTOM PROJECT CTA === */}
-      </div>
 
-      {/* === START: DYNAMIC EXPANDABLE TESTIMONIALS === */}
-      <section className="bg-slate-950 py-24 md:py-32 border-b border-slate-900 overflow-hidden relative">
-        {/* Subtle background ambient glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-amber-500 opacity-[0.03] blur-[120px] rounded-full pointer-events-none" />
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="w-full lg:w-1/2 flex flex-col items-start"
+            >
+              <div className="flex items-center gap-2 mb-4 text-handy-orange font-bold tracking-widest text-xs uppercase bg-orange-950/30 px-4 py-2 rounded-full border border-orange-900/40">
+                <LuShieldCheck size={16} aria-hidden="true" />
+                <span>Health & Safety Certified • Fully Insured</span>
+              </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-2 mb-4 text-handy-orange font-bold tracking-widest text-xs uppercase w-fit mx-auto">
-              <LuMessageSquareQuote size={18} />
-              <span>Don&apos;t just take our word for it</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tighter">
-              Client <span className="text-slate-500">Stories.</span>
-            </h2>
-          </div>
+              <h2
+                id="about-heading"
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight tracking-tighter"
+              >
+                Your Trusted Dublin Builders. <br></br>{" "}
+                <span className="text-slate-400">Start to Finish.</span>
+              </h2>
 
-          {/* Layout Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            {testimonials.map((testimonial) => {
-              const isExpanded = expandedTestimonial === testimonial.id;
-
-              return (
-                <motion.div
-                  layout // This prop tells Framer Motion to automatically animate size changes!
-                  key={testimonial.id}
-                  className="relative bg-slate-900/40 backdrop-blur-md border border-slate-800 rounded-3xl overflow-hidden group hover:border-slate-700 transition-colors shadow-2xl flex flex-col"
-                >
-                  {/* Micro-Interaction: Slow moving ambient background glow on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-handy-orange/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
-                  <motion.div
-                    layout
-                    className="p-8 md:p-10 flex flex-col flex-grow z-10"
-                  >
-                    {/* Micro-Interaction: Staggered Star Pulse on Hover */}
-                    <motion.div layout className="flex gap-1.5 mb-6">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          whileHover={{ scale: 1.2, rotate: 15 }}
-                          transition={{ type: "spring", stiffness: 300 }}
-                        >
-                          <LuStar
-                            className="fill-amber-400 text-amber-400"
-                            size={18}
-                          />
-                        </motion.div>
-                      ))}
-                    </motion.div>
-
-                    <motion.p
-                      layout
-                      className="text-slate-300 text-lg md:text-xl leading-relaxed font-light italic mb-8"
-                    >
-                      &quot;{testimonial.text}&quot;
-                    </motion.p>
-
-                    <motion.div
-                      layout
-                      className="flex items-center justify-between mt-auto"
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center border border-slate-700 text-handy-orange font-bold text-lg">
-                          {testimonial.name.charAt(0)}
-                        </div>
-                        <div>
-                          <div className="font-bold text-white tracking-wide">
-                            {testimonial.name}
-                          </div>
-                          <div className="text-xs text-slate-500 font-bold uppercase tracking-wider mt-0.5">
-                            {testimonial.role}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Expand/Collapse Trigger */}
-                      <button
-                        onClick={() =>
-                          setExpandedTestimonial(
-                            isExpanded ? null : testimonial.id,
-                          )
-                        }
-                        className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 border border-slate-700 hover:bg-handy-orange hover:border-handy-orange hover:text-white text-slate-400 transition-all duration-300 focus:outline-none"
-                        aria-label={
-                          isExpanded ? "Hide Project" : "View Project"
-                        }
-                      >
-                        <motion.div
-                          animate={{ rotate: isExpanded ? 180 : 0 }}
-                          transition={{ duration: 0.4, ease: "easeInOut" }}
-                        >
-                          <LuChevronDown size={20} />
-                        </motion.div>
-                      </button>
-                    </motion.div>
-                  </motion.div>
-
-                  {/* Dynamic Expansion Area: The Hidden Image */}
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                        className="relative w-full h-[250px] sm:h-[300px] border-t border-slate-800"
-                      >
-                        <Image
-                          src={testimonial.projectImg}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          alt={`Project completed for ${testimonial.name}`}
-                          className="object-cover"
-                        />
-                        {/* Inner shadow to blend image into the card */}
-                        <div className="absolute inset-0 shadow-[inset_0_20px_20px_-20px_rgba(2,6,23,0.8)] pointer-events-none" />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
+              <p className="text-base sm:text-lg text-slate-400 mb-6 leading-relaxed font-light">
+                PrimeBuildConstruction is a growing Dublin-based company built
+                on hard work, practical experience, and a commitment to doing
+                the right job. Our goal is to offer clients a stress-free
+                experience by managing multiple stages of a project under one
+                company across the greater Dublin area.
+              </p>
+              <p className="text-base sm:text-lg text-slate-400 mb-6 leading-relaxed font-light">
+                We maintain core standards of high quality, consistency,
+                attention to detail, and on-time delivery. Our skilled and
+                expanding team brings multi-trade capability to every site.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
-      {/* === END: DYNAMIC EXPANDABLE TESTIMONIALS === */}
+
+      {/* === RECENT PROJECTS GALLERY === */}
+      <section
+        className="py-20 md:py-28 bg-slate-900 relative overflow-hidden"
+        aria-labelledby="portfolio-heading"
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-handy-orange opacity-[0.02] blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-3 text-handy-orange font-bold tracking-widest text-xs uppercase">
+                <LuCamera size={16} aria-hidden="true" />
+                <span>Before & Afters Available</span>
+              </div>
+              <h2
+                id="portfolio-heading"
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tighter"
+              >
+                Recent{" "}
+                <span className="text-slate-400">Projects In Dublin.</span>
+              </h2>
+            </div>
+          </div>
+
+          {/* Mobile Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:hidden gap-4">
+            {portfolio.map((item) => (
+              <div
+                key={item.id}
+                className="relative h-64 rounded-2xl overflow-hidden border border-slate-800"
+              >
+                <Image
+                  src={item.img}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  alt={`PrimeBuildConstruction ${item.title} project in Dublin`}
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 p-5">
+                  <span className="text-handy-orange font-semibold text-xs tracking-wider uppercase block mb-1">
+                    {item.category}
+                  </span>
+                  <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Accordion */}
+          <div className="hidden md:flex h-[500px] w-full gap-4">
+            {portfolio.map((item, index) => {
+              const isActive = activeProject === index;
+              return (
+                <button
+                  key={item.id}
+                  onMouseEnter={() => setActiveProject(index)}
+                  onClick={() => setActiveProject(index)}
+                  onFocus={() => setActiveProject(index)}
+                  aria-expanded={isActive}
+                  className={`relative rounded-3xl overflow-hidden cursor-pointer text-left transition-all duration-500 ease-out border border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange ${
+                    isActive
+                      ? "flex-[5] shadow-2xl ring-1 ring-slate-700/50"
+                      : "flex-[1] opacity-50 hover:opacity-90"
+                  }`}
+                >
+                  <Image
+                    src={item.img}
+                    fill
+                    sizes="40vw"
+                    alt={`PrimeBuildConstruction ${item.title} project in Dublin`}
+                    className="object-cover pointer-events-none"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-90 pointer-events-none" />
+
+                  <div className="absolute bottom-0 left-0 p-8 w-full flex flex-col justify-end h-full pointer-events-none">
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        opacity: isActive ? 1 : 0,
+                        y: isActive ? 0 : 15,
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className="truncate"
+                    >
+                      <span className="text-handy-orange font-bold text-xs tracking-wider uppercase mb-1.5 block">
+                        {item.category}
+                      </span>
+                      <h3 className="text-2xl md:text-3xl font-extrabold text-white truncate">
+                        {item.title}
+                      </h3>
+                    </motion.div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+          {/* === NEW: VIEW ALL PROJECTS BUTTON === */}
+          <div className="mt-12 flex justify-end w-full relative z-20">
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center justify-center gap-2 py-3 px-8 rounded-full text-white border border-slate-700 bg-slate-900/50 hover:bg-slate-800 active:scale-98 transition-all font-bold shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange group"
+            >
+              <span>SEE MORE RECENT PROJECTS</span>
+              <LuArrowRight
+                size={18}
+                aria-hidden="true"
+                className="group-hover:translate-x-1 transition-transform"
+              />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <HandymanDivider />
+
+      {/* === START: SERVICES SECTION === */}
+      <section id="services" className="bg-slate-900 pb-24 pt-12 flex-grow">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              OUR SERVICES
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-handy-orange to-orange-400"></div>
+          </div>
+
+          <div className="flex flex-col gap-12">
+            {services.map((service, idx) => (
+              <motion.div
+                key={idx}
+                initial="rest" // Set default state for the hover animation
+                whileHover="hover" // Triggers the 'hover' variant on all children
+                viewport={{ once: true }}
+                className={`flex flex-col ${
+                  idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                } bg-slate-950 border border-slate-800 rounded-xl overflow-hidden group hover:border-slate-700 transition-all shadow-lg cursor-pointer`}
+              >
+                {/* Column 1: The Image Area */}
+                <div className="relative w-full md:w-1/2 h-[300px] md:h-auto overflow-hidden">
+                  {service.imageUrl ? (
+                    <Image
+                      src={service.imageUrl}
+                      fill
+                      alt={service.title}
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500">
+                      Image Coming Soon
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors duration-500" />
+                </div>
+
+                {/* Column 2: The Content Area */}
+                <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center h-125">
+                  {/* The Animated Icon Container */}
+                  <div className="mb-6 p-4 bg-slate-900 w-fit rounded-2xl border border-slate-800 group-hover:border-slate-700 transition-colors">
+                    <motion.div variants={service.animation}>
+                      <service.Icon
+                        className={`w-8 h-8 ${service.iconColor}`}
+                      />
+                    </motion.div>
+                  </div>
+
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-slate-400 text-lg leading-relaxed mb-6">
+                    {service.desc}
+                  </p>
+
+                  <Link
+                    href="/contact"
+                    className="flex items-center gap-2 text-handy-orange font-bold hover:text-white transition-colors w-fit group/btn"
+                  >
+                    Get a Free Quote
+                    <span className="group-hover/btn:translate-x-1 transition-transform">
+                      →
+                    </span>
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* === END: SERVICES SECTION === */}
+
+      {/* === WHY CHOOSE US === */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-slate-900 border-t border-slate-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight">
+              Why Choose{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
+                Prime Build Construction
+              </span>
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              We combine skilled labour, the right tools, and a strong work
+              ethic to deliver reliable results on every job in Dublin.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {whyChooseUs.map((reason, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-4 p-6 bg-slate-950/50 rounded-2xl border border-slate-800"
+              >
+                <LuCircleCheck
+                  className="text-handy-orange shrink-0 mt-1"
+                  size={24}
+                />
+                <p className="text-slate-300 font-medium">{reason}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* === NEW CONTACT CTA SECTION === */}
+      <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-slate-950 border-t border-slate-900 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-handy-orange opacity-[0.04] blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="inline-flex items-center justify-center p-4 bg-slate-900 rounded-2xl border border-slate-800 mb-6 shadow-inner">
+            <LuMessageSquare
+              className="w-8 h-8 text-handy-orange"
+              aria-hidden="true"
+            />
+          </div>
+          <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+            Have a project in mind?
+          </h2>
+          <p className="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-light max-w-2xl mx-auto">
+            Get in touch with our team today. We'll discuss your requirements,
+            provide expert advice, and deliver a comprehensive quote for your
+            Dublin build.
+          </p>
+
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center py-4 px-12 rounded-full text-white bg-handy-orange font-bold shadow-lg shadow-orange-950/40 hover:bg-orange-600 active:scale-98 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:ring-handy-orange"
+          >
+            GET IN TOUCH
+          </Link>
+        </div>
+      </section>
 
       {/* === DYNAMIC GOOGLE REVIEWS SECTION (DUMMY PLACEHOLDER) === */}
       <div className="max-w-7xl mx-auto px-6 mt-24 mb-16">
@@ -656,10 +564,10 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
             <div>
               <h2 className="text-3xl font-extrabold text-white tracking-tight">
-                What Our Clients Say
+                Trusted by local dublin clients
               </h2>
               <p className="text-slate-400 text-sm font-light mt-1">
-                Real reviews pulled directly from Google.
+                Real reviews directly from Google.
               </p>
             </div>
 
@@ -763,18 +671,45 @@ export default function Home() {
         </div>
       </div>
 
+      {/* === CAREERS SECTION === */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-slate-900 border-t border-slate-800">
+        <div className="max-w-5xl mx-auto">
+          <div className="relative overflow-hidden rounded-3xl bg-slate-950 border border-slate-800 px-6 py-12 sm:px-12 shadow-2xl text-center flex flex-col items-center">
+            <div className="flex items-center gap-2 mb-6 bg-slate-900 px-4 py-2 rounded-full border border-slate-800 shadow-inner">
+              <LuUsers className="text-handy-orange" size={16} />
+              <span className="text-slate-300 font-semibold tracking-widest text-xs uppercase">
+                We Are Hiring
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 leading-tight tracking-tight">
+              Looking for hardworking people to join our Dublin team.
+            </h2>
+            <p className="text-base sm:text-lg text-slate-400 mb-8 max-w-2xl leading-relaxed font-light">
+              If you have experience, are willing to learn, and take pride in
+              the work you do, we want to hear from you.
+            </p>
+            <Link
+              href="mailto:careers@PrimeBuildConstruction.com"
+              className="inline-flex justify-center items-center bg-white text-slate-950 font-extrabold text-base sm:text-lg px-8 py-3.5 rounded-full hover:bg-slate-200 active:scale-98 transition-all shadow-md"
+            >
+              Send your CV to ourcompany@gmail.com
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* === FLOATING BACK TO TOP BUTTON === */}
       <AnimatePresence>
         {showTopBtn && (
           <motion.button
-            initial={{ opacity: 0, scale: 0.5 }}
+            initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.5 }}
+            exit={{ opacity: 0, scale: 0.7 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 p-4 bg-handy-orange text-white rounded-full shadow-[0_0_20px_rgba(234,88,12,0.5)] hover:bg-orange-600 transition-colors z-50 flex items-center justify-center back-to-top-btn"
-            aria-label="Scroll to top"
+            className="fixed bottom-6 right-6 p-3.5 bg-handy-orange text-white rounded-full shadow-xl shadow-orange-950/30 hover:bg-orange-600 transition-colors z-50 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            aria-label="Scroll back to top of webpage"
           >
-            <LuArrowUp size={24} />
+            <LuArrowUp size={22} aria-hidden="true" />
           </motion.button>
         )}
       </AnimatePresence>

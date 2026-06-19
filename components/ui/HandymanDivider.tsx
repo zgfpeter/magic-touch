@@ -1,53 +1,22 @@
 export default function HandymanDivider() {
   return (
-    <div className="w-full bg-white flex flex-col z-10 -mb-1">
-      {/* The Orange Tape Measure */}
-      <div className="w-full h-5 md:h-8 bg-[#e8b261] relative overflow-hidden border-y-1 border-slate-800">
-        <svg width="100%" height="100%" className="absolute inset-0">
-          <defs>
-            {/* Creates a repeating pattern of ruler tick marks */}
-            <pattern
-              id="ruler"
-              width="100"
-              height="100"
-              patternUnits="userSpaceOnUse"
-            >
-              <line
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="40"
-                stroke="#0f172a"
-                strokeWidth="4"
-              />
-              <line
-                x1="25"
-                y1="0"
-                x2="25"
-                y2="15"
-                stroke="#0f172a"
-                strokeWidth="2"
-              />
-              <line
-                x1="50"
-                y1="0"
-                x2="50"
-                y2="25"
-                stroke="#0f172a"
-                strokeWidth="3"
-              />
-              <line
-                x1="75"
-                y1="0"
-                x2="75"
-                y2="15"
-                stroke="#0f172a"
-                strokeWidth="2"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#ruler)" />
-        </svg>
+    <div className="w-full bg-slate-950 py-12 md:py-16 relative overflow-hidden select-none pointer-events-none">
+      <div className="max-w-5xl mx-auto px-6 w-full flex items-center justify-center opacity-80">
+        {/* Left Architectural Extension Line & Tick */}
+        <div className="h-6 w-[1px] bg-slate-700 relative">
+          <div className="w-3 h-[2px] bg-slate-400 rotate-45 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        </div>
+
+        {/* Left Main Dimension Line */}
+        <div className="flex-1 h-[1px] bg-slate-800" />
+
+        {/* Right Main Dimension Line */}
+        <div className="flex-1 h-[1px] bg-slate-800" />
+
+        {/* Right Architectural Extension Line & Tick */}
+        <div className="h-6 w-[1px] bg-slate-700 relative">
+          <div className="w-3 h-[2px] bg-slate-400 rotate-45 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        </div>
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ const projectsData = [
       "Heritage Wood Trim Restoration",
       "Premium Interior Painting",
     ],
-    // 6 uniform square tiles
+    // 4 uniform portrait tiles
     images: [
       "/assets/interior-painter.jpg",
       "/assets/saemi-kim-4hcTkOw-EKE-unsplash.jpg",
@@ -53,7 +53,7 @@ const projectsData = [
       "Weather-Resistant Exterior Painting",
       "Gutter & Fascia Board Refresh",
     ],
-    // 6 uniform square tiles
+    // 4 uniform portrait tiles
     images: [
       "/assets/exterior-painter.jpg",
       "/assets/powerwashing.jpg",
@@ -73,7 +73,7 @@ const projectsData = [
       "Hardware Installation",
       "Final Precision Adjustments",
     ],
-    // 6 uniform square tiles
+    // 4 uniform portrait tiles
     images: [
       "/assets/saemi-kim-4hcTkOw-EKE-unsplash.jpg",
       "/assets/interior-painter.jpg",
@@ -105,7 +105,7 @@ export default function ProjectsPage() {
             src={"/assets/heading-bg.jpg"}
             fill
             sizes="100vw"
-            alt="Magic Touch past projects and portfolio"
+            alt="TotalBuild Construction past projects and portfolio"
             className="object-cover -z-10 opacity-30 mix-blend-luminosity"
             priority
           />
@@ -166,9 +166,9 @@ export default function ProjectsPage() {
 
                   <div className="bg-slate-900/50 backdrop-blur-md rounded-3xl p-8 border border-slate-800 shadow-xl relative overflow-hidden">
                     <div className="absolute -right-10 -top-10 w-32 h-32 bg-handy-orange opacity-[0.05] blur-3xl rounded-full pointer-events-none" />
-                    <h4 className="font-bold text-slate-300 mb-6 tracking-wide uppercase text-sm border-b border-slate-800 pb-3">
+                    <h3 className="font-bold text-slate-300 mb-6 tracking-wide uppercase text-sm border-b border-slate-800 pb-3">
                       Services Rendered:
-                    </h4>
+                    </h3>
                     <ul className="flex flex-col gap-4">
                       {project.services.map((item, i) => (
                         <li key={i} className="flex items-start gap-4 group">
@@ -187,21 +187,21 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                {/* Expanded 6-Photo Square Tile Gallery */}
-                <div className="w-full grid sm:grid-cols-2 gap-4 group">
+                {/* Expanded 4-Photo Tall Tile Gallery */}
+                <div className="w-full lg:w-7/12 grid grid-cols-2 gap-4 sm:gap-6 group lg:self-center">
                   {project.images.map((imgSrc, imgIdx) => (
                     <motion.div
                       key={imgIdx}
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={{ scale: 1.03 }}
                       transition={{ duration: 0.3 }}
-                      className="relative aspect-square rounded-2xl overflow-hidden border border-slate-800 shadow-xl"
+                      className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-slate-800 shadow-xl bg-slate-900"
                     >
                       <Image
                         src={imgSrc}
                         fill
-                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-                        alt={`${project.title} - Image ${imgIdx + 1}`}
-                        className="object-cover opacity-70 hover:opacity-100 transition-opacity duration-500 mix-blend-luminosity hover:mix-blend-normal"
+                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 30vw, 25vw"
+                        alt={`${project.title} completion photo ${imgIdx + 1}`}
+                        className="object-cover opacity-70 hover:opacity-100 transition-all duration-500 mix-blend-luminosity hover:mix-blend-normal"
                       />
                     </motion.div>
                   ))}

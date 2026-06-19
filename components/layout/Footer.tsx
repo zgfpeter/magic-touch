@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
-import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok } from "react-icons/fa";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
@@ -25,8 +25,44 @@ export default function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-handy-orange opacity-[0.02] blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* === FOOTER === */}
+        <section className="bg-slate-950 py-12 border-t border-slate-900 text-center flex flex-col items-center">
+          <h3 className="text-2xl font-bold text-white mb-2">
+            Prime Build <span className="text-handy-orange">Construction</span>
+          </h3>
+          <p className="text-slate-400 mb-6 font-light">
+            See more of our work on our social media.
+            <br />
+          </p>
+          {/* Social Links */}
+          <div className="flex gap-4">
+            <Link
+              href="#"
+              aria-label="Visit our Facebook page"
+              className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:bg-handy-orange hover:text-white hover:border-handy-orange transition-all duration-300 shadow-lg hover:-translate-y-1"
+            >
+              <FaFacebook size={20} />
+            </Link>
+            <Link
+              href="#"
+              aria-label="Visit our Instagram page"
+              className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:bg-handy-orange hover:text-white hover:border-handy-orange transition-all duration-300 shadow-lg hover:-translate-y-1"
+            >
+              <FaTiktok size={20} />
+            </Link>
+            <Link
+              href="#"
+              aria-label="Visit our Instagram page"
+              className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:bg-handy-orange hover:text-white hover:border-handy-orange transition-all duration-300 shadow-lg hover:-translate-y-1"
+            >
+              <FaLinkedin size={20} />
+            </Link>
+          </div>
+        </section>
+
         {/* === MASTER GRID === */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8 border-t border-slate-900  pt-12">
           {/* COLUMN 1: Logo & Description */}
           <div className="flex flex-col">
             <Link
@@ -48,28 +84,10 @@ export default function Footer() {
               Your trusted local experts for home repairs, maintenance, and
               professional painting. Precision in every detail.
             </p>
-
-            {/* Social Links */}
-            <div className="flex gap-4">
-              <Link
-                href="#"
-                aria-label="Visit our Facebook page"
-                className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:bg-handy-orange hover:text-white hover:border-handy-orange transition-all duration-300 shadow-lg hover:-translate-y-1"
-              >
-                <FaFacebook size={20} />
-              </Link>
-              <Link
-                href="#"
-                aria-label="Visit our Instagram page"
-                className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:bg-handy-orange hover:text-white hover:border-handy-orange transition-all duration-300 shadow-lg hover:-translate-y-1"
-              >
-                <FaInstagram size={20} />
-              </Link>
-            </div>
           </div>
 
           {/* COLUMN 2: Get In Touch */}
-          <address className="flex flex-col gap-6 not-italic font-light">
+          <address className="flex flex-col gap-6 not-italic font-light ">
             <h3 className="text-white text-xl font-bold mb-2">Get In Touch</h3>
             <a
               href="mailto:ouremail@example.com"

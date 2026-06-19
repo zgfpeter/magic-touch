@@ -1,20 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Lato } from "next/font/google";
+//import { Montserrat, Lato } from "next/font/google";
+import { Sora } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-const montserrat = Montserrat({
+const sora = Sora({
   subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "swap", // Ensures text remains visible during font load
-});
-
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-lato",
-  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sora", // If using Tailwind CSS variables
 });
 
 // 1. Enhanced Metadata for SEO & Social Media
@@ -78,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${montserrat.variable} ${lato.variable} h-full antialiased scroll-smooth`} // Added scroll-smooth for anchor links
+      className={`${sora.variable} h-full antialiased scroll-smooth`} // Added scroll-smooth for anchor links
     >
       <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
         <Header />
