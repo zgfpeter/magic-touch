@@ -1,15 +1,22 @@
 @import "tailwindcss";
 @theme {
-  --color-handy-blue: #0b1a35;
-  --color-handy-orange: #d25f07;
-  --color-handy-orange-hover: #b35106;
-  --color-handy-logo-yellow: #ffb310;
-
+  --color-handy-bg: #020617; /* Deep slate-950 */
+  --color-handy-card: #0f172a; /* Slate-900 */
+  --color-handy-border: #1e293b; /* Slate-800 */
+  --color-handy-blue: #38bdf8; /* Lighter blue for dark mode contrast */
+  --color-handy-orange: #ea580c;
+  --color-handy-orange-hover: #c2410c;
+  --color-handy-logo-yellow: #facc15;
   --font-sans: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Automatically hide the back-to-top button when the mobile menu is open */
+/* Base dark theme application */
+body {
+  background-color: var(--color-handy-bg);
+  color: #f8fafc; /* slate-50 */
+}
+
 body.mobile-menu-open .back-to-top-btn {
   opacity: 0 !important;
   pointer-events: none;
