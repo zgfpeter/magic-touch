@@ -58,32 +58,16 @@ export default function Header() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      {/* 1. TOP UTILITY BAR (Hidden on scroll for maximum real estate, hidden on mobile) */}
-      <AnimatePresence>
-        {!isScrolled && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="hidden lg:block border-b border-slate-900/50 bg-slate-950/40 text-slate-400 text-xs py-5 font-light tracking-wide overflow-hidden"
-          >
-            <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
-              <div className="flex items-center gap-5">
-                <span className="flex items-center gap-3">
-                  <LuMapPin size={13} className="text-handy-orange" />
-                  Serving Dublin & Surrounding Areas
-                </span>
-              </div>
-              <div className="text-slate-500 hover:text-slate-300 transition-colors">
-                <span>Fully Licensed</span>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* 2. MAIN HEADER NAVIGATION BAR */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
+          <div className="flex items-center gap-5 pt-5">
+            <span className="flex items-center gap-3 text-stone-400">
+              <LuMapPin size={13} className="text-handy-orange" />
+              Serving Dublin & Surrounding Areas
+            </span>
+          </div>
+        </div>
         <div
           className={`flex justify-between items-center transition-all duration-300 p-12 ${isScrolled ? "h-16" : "h-20"}`}
         >
@@ -95,7 +79,7 @@ export default function Header() {
               aria-label="Prime Build Construction Homepage"
             >
               <Image
-                src="/assets/company-logo.jpg"
+                src="/assets/company-logo.jpeg"
                 width={130}
                 height={52}
                 sizes="(max-width: 1024px) 105px, 130px"
