@@ -28,14 +28,14 @@ const portfolio = [
     id: 1,
     title: "Studio from the ground up.",
     category: "New Build",
-    img: "/assets/repairs.jpg",
+    img: "/assets/projects/studio/studio-34.jpg",
   },
-  {
-    id: 2,
-    title: "Interior refresh",
-    category: "Painting & Decorating",
-    img: "/assets/repairs.jpg",
-  },
+  // {
+  //   id: 2,
+  //   title: "Interior refresh",
+  //   category: "Painting & Decorating",
+  //   img: "/assets/repairs.jpg",
+  // },
 ];
 
 const services = [
@@ -44,7 +44,7 @@ const services = [
     iconColor: "text-amber-500",
     title: "Construction & Structural",
     desc: "From groundworks to final product. We handle reinforced concrete, block wall construction, and precision timber frame structures across the Dublin area.",
-    imageUrl: "/assets/repairs.jpg",
+    imageUrl: "/assets/construction-structural.jpg",
     animation: {
       rest: { rotate: 0 },
       hover: {
@@ -58,7 +58,7 @@ const services = [
     iconColor: "text-blue-400",
     title: "Garden Rooms & Granny Flats",
     desc: "Expand your living space with our specialized builds, including custom garden rooms, studio apartments, and fully equipped granny flats tailored to Dublin properties.",
-    imageUrl: "/assets/repairs.jpg",
+    imageUrl: "/assets/garden-room.jpg",
     animation: {
       rest: { scale: 1 },
       hover: {
@@ -205,7 +205,7 @@ export default function Home() {
             </span>
           </div>
 
-          <div className="relative p-30 w-full overflow-hidden rounded-3xl border border-slate-700/60 shadow-2xl inline-block">
+          <div className="relative p-30 w-full overflow-hidden rounded-3xl border border-slate-700/60 shadow-2xl inline-block ">
             <Image
               src="/assets/repairs.jpg"
               fill
@@ -421,73 +421,70 @@ export default function Home() {
       <HandymanDivider />
 
       {/* === START: SERVICES SECTION === */}
-      <section id="services" className="bg-slate-900 pb-24 pt-12 flex-grow">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              OUR SERVICES
+      <section id="services" className="bg-slate-900 pb-32 pt-20 flex-grow">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 text-center">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              OUR CONSTRUCTION SERVICES
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-handy-orange to-orange-400"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-handy-orange to-orange-400 mx-auto"></div>
           </div>
 
-          <div className="flex flex-col gap-12">
+          {/* 2-Column Grid Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-2">
             {services.map((service, idx) => (
-              <motion.div
+              <motion.article
                 key={idx}
-                initial="rest" // Set default state for the hover animation
-                whileHover="hover" // Triggers the 'hover' variant on all children
-                viewport={{ once: true }}
-                className={`flex flex-col ${
-                  idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                } bg-slate-950 border border-slate-800 rounded-xl overflow-hidden group hover:border-slate-700 transition-all shadow-lg cursor-pointer`}
+                initial="rest"
+                whileHover="hover"
+                viewport={{ once: true, margin: "-50px" }}
+                className="flex flex-col bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden group hover:border-slate-700 transition-all shadow-xl h-full "
               >
-                {/* Column 1: The Image Area */}
-                <div className="relative w-full md:w-1/2 h-[300px] md:h-auto overflow-hidden">
+                {/* Image Area (Compact Height) */}
+                <div className="relative w-full h-52 sm:h-72 shrink-0 overflow-hidden bg-slate-900">
                   {service.imageUrl ? (
                     <Image
                       src={service.imageUrl}
                       fill
-                      alt={service.title}
-                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      alt={`Prime Build ${service.title} services in Dublin`}
+                      className="object-cover object-center transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100"
                     />
                   ) : (
-                    <div className="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500">
+                    <div className="w-full h-full flex items-center justify-center text-slate-500">
                       Image Coming Soon
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors duration-500" />
+                  {/* Subtle overlay that fades out on hover */}
+                  <div className="absolute inset-0 bg-slate-950/30 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
                 </div>
 
-                {/* Column 2: The Content Area */}
-                <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center h-125">
+                {/* Content Area */}
+                <div className="p-3 sm:p-5 flex flex-col flex-grow">
                   {/* The Animated Icon Container */}
-                  <div className="mb-6 p-4 bg-slate-900 w-fit rounded-2xl border border-slate-800 group-hover:border-slate-700 transition-colors">
-                    <motion.div variants={service.animation}>
-                      <service.Icon
-                        className={`w-8 h-8 ${service.iconColor}`}
-                      />
-                    </motion.div>
+                  <div className="flex items-center gap-3">
+                    <div className="mb-4 p-3 bg-slate-900 w-fit rounded-full border border-slate-800 group-hover:border-slate-700 transition-colors shadow-inner">
+                      <motion.div variants={service.animation}>
+                        <service.Icon
+                          className={`w-5 h-5 ${service.iconColor}`}
+                          aria-hidden="true"
+                        />
+                      </motion.div>
+                    </div>
+                    <h3 className="text-xl sm:text-xl font-extrabold text-white mb-4 tracking-tight">
+                      {service.title}
+                    </h3>
                   </div>
-
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-slate-400 text-lg leading-relaxed mb-6">
+                  <p className="text-slate-400 text-base leading-relaxed mb-8 font-light flex-grow">
                     {service.desc}
                   </p>
 
                   <Link
                     href="/contact"
-                    className="flex items-center gap-2 text-handy-orange font-bold hover:text-white transition-colors w-fit group/btn"
-                  >
-                    Get a Free Quote
-                    <span className="group-hover/btn:translate-x-1 transition-transform">
-                      →
-                    </span>
-                  </Link>
+                    className="flex items-center gap-2 text-handy-orange font-bold hover:text-white transition-colors w-fit group/btn uppercase tracking-wider text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange rounded-sm mt-auto"
+                  ></Link>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>

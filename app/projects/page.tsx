@@ -15,6 +15,8 @@ import {
   LuArrowUp,
   LuCamera,
   LuFolderOpen,
+  LuChevronLeft,
+  LuChevronRight,
 } from "react-icons/lu";
 
 import HandymanDivider from "@/components/ui/HandymanDivider";
@@ -22,66 +24,71 @@ import HandymanDivider from "@/components/ui/HandymanDivider";
 // --- DATA: MOVED OUTSIDE COMPONENT FOR TURBOPACK STABILITY ---
 const projectsData = [
   {
-    id: "rathmines-restoration",
-    title: "Victorian Heritage Restoration",
+    id: "rathmines-studio",
+    title: "Studio from start to finish",
     location: "Rathmines, Dublin",
     description:
-      "A complete interior revitalization of a 19th-century redbrick home. The client wanted to modernize the living spaces while preserving the original architectural character. We conducted extensive plaster repair, restored the original wood trim, and applied a flawless, durable interior paint finish.",
+      "We delivered a complete, start-to-finish construction of a new small studio, managing every aspect of the project from the ground up. Navigate through the photos to see the completed project.",
     services: [
-      "Extensive Plaster & Drywall Repair",
-      "Custom Color Matching",
-      "Heritage Wood Trim Restoration",
-      "Premium Interior Painting",
+      "Site & Structural Work: Complete groundwork and site preparation.",
+      "Utilities & Systems: Full electrical and plumbing integration.",
+      "Custom Carpentry: Design and installation of a seating area and table tailored to the studio's layout, maximizing the available space.",
+      "Interior Finishes: Premium floor and shower tiling, alongside immaculate painting throughout the unit.",
+      " Final Fit-Out: Seamless installation of appliances, delivering a move-in-ready space.",
     ],
     images: [
-      "/assets/interior-painter.jpg",
-      "/assets/saemi-kim-4hcTkOw-EKE-unsplash.jpg",
-      "/assets/repairs.jpg",
-      "/assets/heading-bg.jpg",
-    ],
-  },
-  {
-    id: "howth-exterior",
-    title: "Complete Exterior Weatherproofing",
-    location: "Howth, Co. Dublin",
-    description:
-      "Located right on the coast, this property was taking a severe beating from the salty sea air and harsh Irish winds. We began with a deep commercial-grade power wash to remove algae and salt buildup, followed by masonry repairs and two coats of extreme-weather protective masonry paint.",
-    services: [
-      "Commercial Power Washing",
-      "Masonry Crack Injection",
-      "Weather-Resistant Exterior Painting",
-      "Gutter & Fascia Board Refresh",
-    ],
-    images: [
-      "/assets/exterior-painter.jpg",
-      "/assets/powerwashing.jpg",
-      "/assets/about-us.jpg",
-      "/assets/interior-painter.jpg",
-    ],
-  },
-  {
-    id: "ballsbridge-fitout",
-    title: "Modern Kitchen Fit-out & Handyman Tasks",
-    location: "Ballsbridge, Dublin",
-    description:
-      "The client needed a rapid turnaround to finish a kitchen modernization before the holidays. Our team stepped in to handle the final assembly of custom cabinetry, secure heavy appliance mounting, install modern hardware, and ensure every door and drawer aligned perfectly.",
-    services: [
-      "Flat-pack & Custom Cabinet Assembly",
-      "Heavy Appliance & TV Mounting",
-      "Hardware Installation",
-      "Final Precision Adjustments",
-    ],
-    images: [
-      "/assets/saemi-kim-4hcTkOw-EKE-unsplash.jpg",
-      "/assets/interior-painter.jpg",
-      "/assets/repairs.jpg",
-      "/assets/exterior-painter.jpg",
+      "/assets/projects/studio/studio-1.jpg",
+      "/assets/projects/studio/studio-2.jpg",
+      "/assets/projects/studio/studio-3.jpg",
+      "/assets/projects/studio/studio-4.jpg",
+      "/assets/projects/studio/studio-5.jpg",
+      "/assets/projects/studio/studio-6.jpg",
+      // "/assets/projects/studio/studio-7.jpg",
+      "/assets/projects/studio/studio-8.jpg",
+      "/assets/projects/studio/studio-9.jpg",
+      "/assets/projects/studio/studio-10.jpg",
+      "/assets/projects/studio/studio-11.jpg",
+      "/assets/projects/studio/studio-12.jpg",
+      //"/assets/projects/studio/studio-13.jpg",
+      //"/assets/projects/studio/studio-14.jpg",
+      //"/assets/projects/studio/studio-15.jpg",
+      //"/assets/projects/studio/studio-16.jpg",
+      //"/assets/projects/studio/studio-17.jpg",
+      //"/assets/projects/studio/studio-18.jpg",
+      //"/assets/projects/studio/studio-19.jpg",
+      //"/assets/projects/studio/studio-20.jpg",
+      // "/assets/projects/studio/studio-21.jpg",
+      //"/assets/projects/studio/studio-22.jpg",
+      "/assets/projects/studio/studio-23.jpg",
+      "/assets/projects/studio/studio-24.jpg",
+      "/assets/projects/studio/studio-25.jpg",
+      //"/assets/projects/studio/studio-26.jpg",
+      //"/assets/projects/studio/studio-27.jpg",
+      //"/assets/projects/studio/studio-28.jpg",
+      //"/assets/projects/studio/studio-29.jpg",
+      //"/assets/projects/studio/studio-30.jpg",
+      //"/assets/projects/studio/studio-31.jpg",
+      //"/assets/projects/studio/studio-32.jpg",
+      //"/assets/projects/studio/studio-33.jpg",
+      "/assets/projects/studio/studio-34.jpg",
+      //"/assets/projects/studio/studio-35.jpg",
+      //"/assets/projects/studio/studio-36.jpg",
+      "/assets/projects/studio/studio-41.jpg",
+      "/assets/projects/studio/studio-37.jpg",
+      "/assets/projects/studio/studio-39.jpg",
+      "/assets/projects/studio/studio-38.jpg",
+      "/assets/projects/studio/studio-46.jpg",
+      "/assets/projects/studio/studio-40.jpg",
+      "/assets/projects/studio/studio-42.jpg",
+      "/assets/projects/studio/studio-43.jpg",
+      "/assets/projects/studio/studio-44.jpg",
+      //"/assets/projects/studio/studio-45.jpg",
+      "/assets/projects/studio/studio-47.jpg",
     ],
   },
 ];
 
-// === NEW INTERACTIVE GALLERY COMPONENT ===
-// Manages local state for each individual project's image viewer
+// === UPDATED INTERACTIVE GALLERY COMPONENT ===
 const ProjectGallery = ({
   images,
   title,
@@ -91,51 +98,120 @@ const ProjectGallery = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Navigation Handlers
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  // Keyboard Accessibility Handler
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowRight") {
+      e.preventDefault(); // Prevents page scrolling if that happens
+      handleNext();
+    }
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      handlePrev();
+    }
+  };
+
+  // Thumbnail Sliding Window Logic (Shows 5 thumbnails at a time)
+  const maxVisibleThumbs = 5;
+  let startIdx = Math.max(0, activeIndex - Math.floor(maxVisibleThumbs / 2));
+  let endIdx = startIdx + maxVisibleThumbs;
+
+  // Adjust window if we are near the end of the array
+  if (endIdx > images.length) {
+    startIdx = Math.max(0, images.length - maxVisibleThumbs);
+    endIdx = images.length;
+  }
+
+  // Create an array of objects holding the original index and the image source
+  const visibleThumbnails = images
+    .map((src, index) => ({ src, originalIndex: index }))
+    .slice(startIdx, endIdx);
+
   return (
-    <div className="w-full lg:w-7/12 flex flex-col gap-3 lg:self-center">
-      {/* Featured Main Image */}
-      <div className="relative aspect-video sm:aspect-[4/3] w-full rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900 group">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="absolute inset-0"
-          >
-            <Image
-              src={images[activeIndex]}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              alt={`${title} - Featured Image`}
-              className="object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-700"
-              priority
-            />
-            {/* Subtle vignette for premium feel */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-slate-950/60 pointer-events-none" />
-          </motion.div>
-        </AnimatePresence>
+    <div
+      className="w-full lg:w-2/3 flex flex-col gap-6 lg:self-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950 rounded-2xl transition-all"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+      role="region"
+      aria-label={`${title} image gallery, use left and right arrow keys to navigate`}
+    >
+      {/* Featured Main Image with External Navigation Arrows */}
+      <div className="flex items-center justify-center gap-2 sm:gap-6 w-full">
+        {/* Left Arrow */}
+        <button
+          onClick={handlePrev}
+          className="flex-shrink-0 z-20 p-2 sm:p-4 rounded-full bg-slate-900 hover:bg-handy-orange text-white transition-all border border-slate-700 hover:border-handy-orange shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          aria-label="Previous image"
+        >
+          <LuChevronLeft size={28} />
+        </button>
+
+        {/* Image Container (Removed max-w-lg, changed to aspect-[4/3]) */}
+        <div className="relative flex-1 aspect-[4/3] w-full rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900 group">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={images[activeIndex]}
+                fill
+                sizes="(max-width: 1024px) 100vw, 70vw"
+                alt={`${title} - Image ${activeIndex + 1}`}
+                className="object-contain transition-all duration-300"
+                priority
+              />
+              {/* Subtle vignette for premium feel */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-slate-950/60 pointer-events-none" />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Image Counter Badge */}
+          <div className="absolute bottom-5 right-5 z-20 bg-slate-950/80 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold text-slate-300 border border-slate-800">
+            {activeIndex + 1} / {images.length}
+          </div>
+        </div>
+
+        {/* Right Arrow */}
+        <button
+          onClick={handleNext}
+          className="flex-shrink-0 z-20 p-2 sm:p-4 rounded-full bg-slate-900 hover:bg-handy-orange text-white transition-all border border-slate-700 hover:border-handy-orange shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          aria-label="Next image"
+        >
+          <LuChevronRight size={28} />
+        </button>
       </div>
 
-      {/* Thumbnail Navigation Strip */}
-      <div className="grid grid-cols-4 gap-2 sm:gap-3">
-        {images.map((imgSrc, idx) => (
+      {/* Thumbnail Navigation Strip (Removed max-w-md, widened max-w-3xl) */}
+      <div className="flex gap-3 sm:gap-4 w-full max-w-3xl mx-auto h-24 sm:h-28 px-12 sm:px-0 mt-2">
+        {visibleThumbnails.map(({ src, originalIndex }) => (
           <button
-            key={idx}
-            onClick={() => setActiveIndex(idx)}
-            className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
-              activeIndex === idx
+            key={originalIndex}
+            onClick={() => setActiveIndex(originalIndex)}
+            className={`relative flex-1 rounded-xl overflow-hidden border-2 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
+              activeIndex === originalIndex
                 ? "border-handy-orange opacity-100 scale-[0.98]"
-                : "border-slate-800 opacity-40 hover:opacity-100 hover:border-slate-600"
+                : "border-slate-800 opacity-40 hover:opacity-100 hover:border-slate-600 mix-blend-luminosity hover:mix-blend-normal"
             }`}
-            aria-label={`View ${title} image ${idx + 1}`}
+            aria-label={`View ${title} image ${originalIndex + 1}`}
           >
             <Image
-              src={imgSrc}
+              src={src}
               fill
-              sizes="(max-width: 768px) 25vw, 15vw"
-              alt={`${title} thumbnail ${idx + 1}`}
+              sizes="(max-width: 768px) 20vw, 15vw"
+              alt={`${title} thumbnail ${originalIndex + 1}`}
               className="object-cover"
             />
           </button>
@@ -159,7 +235,7 @@ export default function ProjectsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-200 relative selection:bg-handy-orange selection:text-white overflow-hidden">
+    <main className="min-h-screen bg-slate-950 text-slate-200 relative selection:bg-handy-orange selection:text-white overflow-hidden ">
       <div className="relative min-h-screen flex flex-col">
         {/* === START: HERO SECTION === */}
         <section className="relative h-[60vh] flex flex-col justify-center items-center text-white overflow-hidden px-6">
@@ -197,7 +273,8 @@ export default function ProjectsPage() {
 
         {/* === START: PROJECTS SHOWCASE === */}
         <section className="py-12 md:py-24 bg-slate-950">
-          <div className="max-w-7xl mx-auto px-6 flex flex-col gap-32">
+          {/* UPGRADED: max-w-[100rem] allows it to be much wider on big screens */}
+          <div className="max-w-[100rem] mx-auto px-6 lg:px-12 flex flex-col gap-32">
             {projectsData.map((project, idx) => (
               <motion.div
                 key={project.id}
@@ -210,7 +287,7 @@ export default function ProjectsPage() {
                 }`}
               >
                 {/* Text Details Side */}
-                <div className="w-full lg:w-5/12 flex flex-col justify-center">
+                <div className="w-full lg:w-1/3 flex flex-col justify-center">
                   <div className="flex items-center gap-2 text-handy-orange font-bold uppercase tracking-wider text-sm mb-4">
                     <LuMapPin size={18} aria-hidden="true" />
                     <span>{project.location}</span>
@@ -278,14 +355,11 @@ export default function ProjectsPage() {
               </div>
 
               <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight relative z-10">
-                Let&apos;s build your{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600">
-                  masterpiece.
-                </span>
+                Let&apos;s build your ideal space.
               </h2>
               <p className="text-lg text-slate-400 mb-10 max-w-2xl leading-relaxed relative z-10 font-light">
                 Whether you need a complete exterior overhaul or precise
-                interior finishing, our team is ready to bring your vision to
+                interior finishing, our team is ready to bring your project to
                 life.
               </p>
 
@@ -294,7 +368,7 @@ export default function ProjectsPage() {
                   href="/contact"
                   className="bg-handy-orange text-white font-extrabold text-lg px-10 py-4 rounded-full shadow-[0_0_20px_rgba(234,88,12,0.4)] hover:shadow-[0_0_30px_rgba(234,88,12,0.6)] hover:-translate-y-1 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  Request a Free Quote
+                  Contact us
                 </Link>
               </div>
             </motion.div>

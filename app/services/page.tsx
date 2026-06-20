@@ -23,78 +23,68 @@ export default function ServicesPage() {
       {
         Icon: LuHammer,
         iconColor: "text-amber-500",
-        title: "Comprehensive Dublin Handyman Services",
-        desc: "Your weekend is too valuable to spend wrestling with flat-pack furniture or figuring out why a door won't close properly. Our trusted Dublin handyman services are designed to tackle your entire property 'to-do' list in a single visit. We arrive equipped to handle everything from secure TV mounting in modern Dublin apartments to hanging heavy mirrors on traditional masonry walls. No job is too small when it comes to keeping your Dublin home functioning perfectly.",
+        title: "Construction and structural work",
+        desc: "",
         imageUrl: "/assets/saemi-kim-4hcTkOw-EKE-unsplash.jpg",
         includes: [
-          "Flat-pack furniture assembly (IKEA, etc.)",
-          "Secure TV mounting & cable management",
-          "Shelving, mirror, and heavy picture hanging",
-          "Door planning, lock fitting, and hinge adjustments",
-          "Curtain pole and blind installation across Dublin",
-          "Smoke alarm and battery replacement",
+          "Ground works",
+          "Reinforced concrete",
+          "Block wall construction",
+          "Timber frame structures",
+          "Garden rooms/granny flats",
+          "Small construction jobs",
         ],
       },
       {
         Icon: LuPaintbrush,
         iconColor: "text-cyan-500",
-        title: "Interior Painting & Decorating in Dublin",
-        desc: "A fresh coat of paint is the most effective way to completely transform a room, but a truly premium finish is all in the preparation. As top-rated Dublin painters and decorators, we meticulously prepare your space by filling cracks, sanding uneven surfaces, and taping off edges for flawlessly crisp lines. We protect your floors and furniture with heavy-duty drop cloths and apply premium, durable paints to beautifully revitalize your living spaces.",
+        title: "Interior finishes",
+        desc: "",
         imageUrl: "/assets/interior-painter.jpg",
         includes: [
-          "Full room repaints (walls, ceilings, feature walls)",
-          "Precision trim, skirting board, and door painting",
-          "Kitchen and bathroom cabinet refinishing",
-          "Extensive drywall prep, sanding, and priming",
-          "Water damage stain blocking and sealing",
-          "Wallpaper removal and professional wall smoothing",
+          "Plasterboard installation",
+          "Joint taping and skimming",
+          "Painting and decorating",
+          "Door and window installation",
         ],
       },
       {
         Icon: LuHouse,
         iconColor: "text-blue-400",
-        title: "Dublin Exterior House Refresh & Weatherproofing",
-        desc: "The unpredictable coastal Dublin weather can take a serious toll on your property's exterior. Driving rain, wind, and fluctuating temperatures quickly cause paint to peel and timber to rot. Our exterior refresh services don't just make your home look stunning—they seal and protect it against the harsh Irish elements. We utilize premium, weather-resistant masonry paints and deep-penetrating wood stains to safeguard your Dublin property and boost your curb appeal.",
+        title: "Property maintenance",
+        desc: "",
         imageUrl: "/assets/exterior-painter.jpg",
         includes: [
-          "Weather-resistant masonry and brickwork painting",
-          "Exterior wood, cladding, and trim touch-ups",
-          "Deck, fence, and pergola sanding and staining",
-          "Fascia, soffit, and gutterboard protective painting",
-          "Front door restoration and painting",
-          "Window sill scraping, sealing, and repainting",
+          "Gutter cleaning up to 2 storeys",
+          "Power washing",
+          "Driveway patios, wall and exterior cleaning",
         ],
       },
       {
         Icon: LuWrench,
         iconColor: "text-stone-400",
-        title: "General Home Repairs Across County Dublin",
-        desc: "Ignoring a small issue in your home often leads to a major, expensive emergency. A slightly leaky tap can cause hidden mold, and damaged siding invites water into your internal walls. We specialize in diagnosing and fixing these structural and mechanical issues quickly for homeowners across County Dublin. From patching unsightly drywall holes to repairing cracked grout and stabilizing squeaky stairs, we restore the structural integrity of your home.",
+        title: "General Home Repairs",
+        desc: "",
         imageUrl: "/assets/repairs.jpg",
         includes: [
-          "Drywall patching, plastering, and hole repair",
-          "Minor plumbing fixes (leaky taps, running toilets)",
-          "Tile replacement and fresh bathroom/kitchen grouting",
-          "Squeaky floorboard and stair stabilization",
-          "Weatherstripping and home draft elimination",
-          "Minor fencing, gate, and exterior structural repairs",
+          "Not every task fits in a box, talk to us about your specific project.",
         ],
       },
-      {
-        Icon: LuFence,
-        iconColor: "text-emerald-500",
-        title: "Dublin Driveway & Patio Power Washing",
-        desc: "Over time, Dublin's damp climate causes driveways, patios, and walkways to accumulate a thick, slippery layer of algae, moss, and dirt. This not only diminishes your property's appearance but creates a serious slipping hazard. Our commercial-grade high-pressure washing service safely blasts away years of built-up grime, instantly restoring your exterior surfaces. It is the fastest way to rejuvenate your outdoor spaces and prep decks for new stain.",
-        imageUrl: "/assets/powerwashing.jpg",
-        includes: [
-          "Concrete driveway and sidewalk deep cleaning",
-          "Patio, decking, and paving stone restoration",
-          "Wooden fence and deck moss/algae removal",
-          "Brickwork and exterior wall washdowns",
-          "Slippery green algae and weed clearing",
-          "Outdoor furniture and bin area sanitization",
-        ],
-      },
+      // {
+      //   Icon: LuFence,
+      //   iconColor: "text-emerald-500",
+      //   title: "Dublin Driveway & Patio Power Washing",
+      //   desc: "Over time, Dublin's damp climate causes driveways, patios, and walkways to accumulate a thick, slippery layer of algae, moss, and dirt. This not only diminishes your property's appearance but creates a serious slipping hazard. Our commercial-grade high-pressure washing service safely blasts away years of built-up grime, instantly restoring your exterior surfaces. It is the fastest way to rejuvenate your outdoor spaces and prep decks for new stain.",
+      //   imageUrl: "/assets/powerwashing.jpg",
+      //   includes: [
+      //     "Concrete driveway and sidewalk deep cleaning",
+      //     "Patio, decking, and paving stone restoration",
+      //     "Wooden fence and deck moss/algae removal",
+      //     "Brickwork and exterior wall washdowns",
+      //     "Slippery green algae and weed clearing",
+      //     "Outdoor furniture and bin area sanitization",
+      //   ],
+      // },
     ],
     [],
   );
@@ -117,16 +107,16 @@ export default function ServicesPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 flex flex-col relative selection:bg-handy-orange selection:text-white">
+    <main className="min-h-screen bg-slate-950 py-24 md:py-34 selection:bg-handy-orange selection:text-white relative overflow-hidden">
       {/* === PAGE HEADER === */}
-      <section className="bg-slate-950 py-24 px-6 text-center border-b border-slate-900">
+      <section className="bg-slate-950 px-6 text-center border-b border-slate-900">
         <div className="max-w-4xl mx-auto mt-12">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6"
           >
-            OUR <span className="text-handy-orange"> SERVICES</span>
+            <span className="text-handy-orange"> Services</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -211,9 +201,9 @@ export default function ServicesPage() {
                 <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-800 shadow-lg relative overflow-hidden">
                   <div className="absolute -right-20 -top-20 w-40 h-40 bg-handy-orange opacity-5 blur-3xl rounded-full pointer-events-none" />
 
-                  <h3 className="font-bold text-slate-300 mb-6 tracking-wide uppercase text-sm border-b border-slate-800 pb-3">
+                  {/* <h3 className="font-bold text-slate-300 mb-6 tracking-wide uppercase text-sm border-b border-slate-800 pb-3">
                     Commonly Included in our Dublin Services:
-                  </h3>
+                  </h3> */}
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
                     {service.includes.map((item, i) => (
                       <li key={i} className="flex items-start gap-3">

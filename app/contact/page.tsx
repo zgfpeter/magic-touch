@@ -85,7 +85,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 py-24 md:py-32 selection:bg-handy-orange selection:text-white relative overflow-hidden">
+    <main className="min-h-screen bg-slate-950 py-24 md:py-42 selection:bg-handy-orange selection:text-white relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-handy-orange opacity-[0.03] blur-[120px] rounded-full pointer-events-none" />
 
@@ -106,7 +106,7 @@ export default function ContactPage() {
             </h1>
             <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
               Ready to start your construction or renovation project? Send us a
-              message with your site details or book a dedicated consultation
+              message with your project details or book a dedicated consultation
               time below.
             </p>
           </motion.div>

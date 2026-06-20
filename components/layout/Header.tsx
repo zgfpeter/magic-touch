@@ -45,8 +45,9 @@ export default function Header() {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services", hasDropdown: false },
-    { name: "About Us", path: "/about-us" },
     { name: "Recent Projects", path: "/projects" },
+    { name: "About Us", path: "/about-us" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -84,7 +85,7 @@ export default function Header() {
       {/* 2. MAIN HEADER NAVIGATION BAR */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          className={`flex justify-between items-center transition-all duration-300 ${isScrolled ? "h-16" : "h-20"}`}
+          className={`flex justify-between items-center transition-all duration-300 p-12 ${isScrolled ? "h-16" : "h-20"}`}
         >
           {/* Brand Logo */}
           <div className="flex-shrink-0 flex items-center">
@@ -112,7 +113,7 @@ export default function Header() {
           {/* Desktop Nav Links */}
           <nav
             aria-label="Main Navigation"
-            className="hidden lg:flex space-x-1 items-center font-medium text-sm tracking-wide text-slate-300"
+            className="hidden lg:flex space-x-1 items-center font-medium text-lg tracking-wide text-slate-300"
           >
             {navLinks.map((link) => {
               const isActive = pathname === link.path;

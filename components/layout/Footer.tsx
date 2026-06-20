@@ -134,13 +134,13 @@ export default function Footer() {
           {/* FULL WIDTH ROW: Quick Links (Spans 2 cols on Med, 3 cols on Large) */}
           <nav
             aria-label="Footer Navigation"
-            className="flex flex-col md:flex-row md:items-center justify-between gap-8 md:col-span-2 lg:col-span-3 mt-8 pt-10 border-t border-slate-800/50"
+            className="flex flex-col md:flex-row md:items-center justify-between md:col-span-2 lg:col-span-3 border-t border-slate-800/50  p-3"
           >
             <h3 className="text-xl font-bold text-white md:hidden">
               Quick Links
             </h3>
 
-            <div className="flex flex-col md:flex-row md:items-center gap-8 font-bold text-sm tracking-wider uppercase">
+            <div className="flex flex-col p-5 md:flex-row md:items-center gap-8 font-bold text-sm tracking-wider uppercase">
               <Link
                 href="/"
                 className="hover:text-handy-orange transition-colors"
@@ -173,17 +173,17 @@ export default function Footer() {
               </Link>
             </div>
 
-            <Link
+            {/* <Link
               href="/contact"
               className="bg-handy-orange text-white font-extrabold rounded-full px-8 py-3.5 hover:bg-orange-600 shadow-[0_0_15px_rgba(234,88,12,0.3)] hover:shadow-[0_0_25px_rgba(234,88,12,0.5)] hover:-translate-y-0.5 transition-all w-fit text-center uppercase tracking-wide text-sm"
             >
-              Book Appointment
-            </Link>
+              CONTACT
+            </Link> */}
           </nav>
         </div>
 
         {/* === COPYRIGHT BAR === */}
-        <div className="mt-16 pt-8 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-600">
+        <div className=" p-5 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-600">
           <p>© {new Date().getFullYear()} Magic Touch. All rights reserved.</p>
           <p>Designed with care for local homeowners.</p>
         </div>

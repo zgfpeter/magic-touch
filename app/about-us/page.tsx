@@ -20,21 +20,21 @@ const processSteps = [
     Icon: LuClipboardPen,
     title: "Consultation & Scoping",
     desc: "Every successful build starts with complete clarity. We begin with a thorough site visit at your Dublin property to understand your vision and assess the project requirements.",
-    img: "/assets/about-us.jpg", // Replace with an image of planning/consulting
+    img: "/assets/consultation.jpeg", // Replace with an image of planning/consulting
   },
   {
     stepNumber: "02",
     Icon: LuHammer,
     title: "The Build Phase",
     desc: "Once the plan is set, our dedicated multi-trade team takes over. From foundational groundworks to the final coat of paint, we manage everything. We maintain a clean, respectful job site and provide you with consistent updates so you never have to wonder what is happening with your home.",
-    img: "/assets/repairs.jpg", // Replace with an image of active construction
+    img: "/assets/build-phase.jpeg", // Replace with an image of active construction
   },
   {
     stepNumber: "03",
     Icon: LuKey,
     title: "Final Handover",
     desc: "We don't consider the job done until the site is spotless and the finish is flawless. We conduct a rigorous final walkthrough alongside you to ensure every detail meets our strict internal standards and your exact expectations.",
-    img: "/assets/interior-painter.jpg", // Replace with an image of a finished room
+    img: "/assets/handover.jpeg", // Replace with an image of a finished room
   },
 ];
 
