@@ -66,7 +66,6 @@ const projectsData = [
   },
 ];
 
-// === UPDATED INTERACTIVE GALLERY COMPONENT ===
 const ProjectGallery = ({
   images,
   title,
@@ -85,10 +84,20 @@ const ProjectGallery = ({
     setActiveIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
+  // Framer Motion Drag Handler for Mobile Swipe
+  const handleDragEnd = (event: any, info: any) => {
+    const swipeThreshold = 50; // Minimum distance to trigger a swipe
+    if (info.offset.x < -swipeThreshold) {
+      handleNext(); // Swiped left
+    } else if (info.offset.x > swipeThreshold) {
+      handlePrev(); // Swiped right
+    }
+  };
+
   // Keyboard Accessibility Handler
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowRight") {
-      e.preventDefault(); // Prevents page scrolling if that happens
+      e.preventDefault();
       handleNext();
     }
     if (e.key === "ArrowLeft") {
@@ -97,75 +106,79 @@ const ProjectGallery = ({
     }
   };
 
-  // Thumbnail Sliding Window Logic (Shows 5 thumbnails at a time)
+  // Thumbnail Sliding Window Logic
   const maxVisibleThumbs = 5;
   let startIdx = Math.max(0, activeIndex - Math.floor(maxVisibleThumbs / 2));
   let endIdx = startIdx + maxVisibleThumbs;
 
-  // Adjust window if we are near the end of the array
   if (endIdx > images.length) {
     startIdx = Math.max(0, images.length - maxVisibleThumbs);
     endIdx = images.length;
   }
 
-  // Create an array of objects holding the original index and the image source
   const visibleThumbnails = images
     .map((src, index) => ({ src, originalIndex: index }))
     .slice(startIdx, endIdx);
-
   return (
     <div
-      className="w-full lg:w-2/3 flex flex-col gap-6 lg:self-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950 rounded-2xl transition-all"
+      className="w-full lg:w-2/3 flex flex-col gap-4 sm:gap-6 lg:self-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange rounded-2xl transition-all"
       tabIndex={0}
       onKeyDown={handleKeyDown}
       role="region"
-      aria-label={`${title} image gallery, use left and right arrow keys to navigate`}
+      aria-label={`${title} image gallery`}
     >
-      {/* Featured Main Image with External Navigation Arrows */}
-      <div className="flex items-center justify-center gap-2 sm:gap-6 w-full">
-        {/* Left Arrow */}
+      {/* Featured Main Image Container */}
+      <div className="flex items-center justify-center gap-0 sm:gap-6 w-full relative">
+        {/* Left Arrow (Hidden on Mobile) */}
         <button
           onClick={handlePrev}
-          className="flex-shrink-0 z-20 p-2 sm:p-4 rounded-full bg-slate-900 hover:bg-handy-orange text-white transition-all border border-slate-700 hover:border-handy-orange shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className="hidden sm:flex flex-shrink-0 z-20 p-3 rounded-full bg-slate-900 hover:bg-handy-orange text-white transition-all border border-slate-700 hover:border-handy-orange shadow-lg focus-visible:outline-none"
           aria-label="Previous image"
         >
           <LuChevronLeft size={28} />
         </button>
 
-        {/* Image Container */}
-        <div className="relative flex-1 aspect-[4/3] w-full rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900 group">
+        {/* Image Frame (Taller on mobile, standard 4/3 on desktop) */}
+        {/* touch-pan-y ensures vertical scrolling isn't blocked by the slider */}
+        <div className="relative w-full sm:flex-1 aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900 touch-pan-y group">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="absolute inset-0"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="absolute inset-0 cursor-grab active:cursor-grabbing"
+              // Add Framer Motion drag capabilities
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={handleDragEnd}
             >
               <Image
                 src={images[activeIndex]}
                 fill
-                sizes="(max-width: 1024px) 100vw, 70vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 50vw"
                 alt={`${title} - Image ${activeIndex + 1}`}
-                className="object-contain transition-all duration-300"
+                // Changed to cover on mobile for edge-to-edge feel, contain on desktop
+                className="object-cover sm:object-contain transition-all duration-300 pointer-events-none"
                 priority
               />
-              {/* Subtle vignette for premium feel */}
+              {/* Subtle vignette */}
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-slate-950/60 pointer-events-none" />
             </motion.div>
           </AnimatePresence>
 
           {/* Image Counter Badge */}
-          <div className="absolute bottom-5 right-5 z-20 bg-slate-950/80 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold text-slate-300 border border-slate-800">
+          <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 z-20 bg-slate-950/80 backdrop-blur-sm px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-slate-300 border border-slate-800 pointer-events-none">
             {activeIndex + 1} / {images.length}
           </div>
         </div>
 
-        {/* Right Arrow */}
+        {/* Right Arrow (Hidden on Mobile) */}
         <button
           onClick={handleNext}
-          className="flex-shrink-0 z-20 p-2 sm:p-4 rounded-full bg-slate-900 hover:bg-handy-orange text-white transition-all border border-slate-700 hover:border-handy-orange shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className="hidden sm:flex flex-shrink-0 z-20 p-3 rounded-full bg-slate-900 hover:bg-handy-orange text-white transition-all border border-slate-700 hover:border-handy-orange shadow-lg focus-visible:outline-none"
           aria-label="Next image"
         >
           <LuChevronRight size={28} />
@@ -173,12 +186,12 @@ const ProjectGallery = ({
       </div>
 
       {/* Thumbnail Navigation Strip */}
-      <div className="flex gap-3 sm:gap-4 w-full max-w-3xl mx-auto h-24 sm:h-28 px-12 sm:px-0 mt-2">
+      <div className="flex gap-2 sm:gap-4 w-full max-w-3xl mx-auto h-20 sm:h-28 mt-2">
         {visibleThumbnails.map(({ src, originalIndex }) => (
           <button
             key={originalIndex}
             onClick={() => setActiveIndex(originalIndex)}
-            className={`relative flex-1 rounded-xl overflow-hidden border-2 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
+            className={`relative flex-1 rounded-xl overflow-hidden border-2 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange ${
               activeIndex === originalIndex
                 ? "border-handy-orange opacity-100 scale-[0.98]"
                 : "border-slate-800 opacity-40 hover:opacity-100 hover:border-slate-600 mix-blend-luminosity hover:mix-blend-normal"
@@ -190,7 +203,7 @@ const ProjectGallery = ({
               fill
               sizes="(max-width: 768px) 20vw, 15vw"
               alt={`${title} thumbnail ${originalIndex + 1}`}
-              className="object-cover"
+              className="object-cover pointer-events-none"
             />
           </button>
         ))}
@@ -363,7 +376,7 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 p-4 bg-handy-orange text-white rounded-full shadow-[0_0_20px_rgba(234,88,12,0.5)] hover:bg-orange-600 transition-colors z-50 flex items-center justify-center back-to-top-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="scroll-to-top fixed bottom-8 right-8 p-4 bg-handy-orange text-white rounded-full shadow-[0_0_20px_rgba(234,88,12,0.5)] hover:bg-orange-600 transition-colors z-50 flex items-center justify-center back-to-top-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             aria-label="Scroll back to top"
           >
             <LuArrowUp size={24} aria-hidden="true" />

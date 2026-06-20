@@ -149,10 +149,10 @@ export default function ContactPage() {
                   Email Address
                 </h3>
                 <a
-                  href="mailto:info@totalbuildconstruction.com"
+                  href="mailto:info@primebuildconstruction.com"
                   className="text-white text-lg font-medium hover:text-handy-orange transition-colors break-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange rounded-sm"
                 >
-                  info@totalbuildconstruction.com
+                  info@primebuildconstruction.com
                 </a>
               </div>
             </div>

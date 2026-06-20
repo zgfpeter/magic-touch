@@ -17,7 +17,7 @@ body {
   color: #f8fafc; /* slate-50 */
 }
 
-body.mobile-menu-open .back-to-top-btn {
+body.menu-is-open .scroll-to-top {
   opacity: 0 !important;
   pointer-events: none;
   visibility: hidden;

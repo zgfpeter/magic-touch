@@ -36,9 +36,18 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "unset";
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.classList.add("menu-is-open"); // Hides the scroll button
+    } else {
+      document.body.style.overflow = "unset";
+      document.body.classList.remove("menu-is-open"); // Shows the scroll button
+    }
+
+    // Cleanup function if the component unmounts
     return () => {
       document.body.style.overflow = "unset";
+      document.body.classList.remove("menu-is-open");
     };
   }, [menuOpen]);
 
@@ -60,14 +69,14 @@ export default function Header() {
     >
       {/* 2. MAIN HEADER NAVIGATION BAR */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
+        {/* <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
           <div className="flex items-center gap-5 pt-5">
             <span className="flex items-center gap-3 text-stone-400">
               <LuMapPin size={13} className="text-handy-orange" />
               Serving Dublin & Surrounding Areas
             </span>
           </div>
-        </div>
+        </div> */}
         <div
           className={`flex justify-between items-center transition-all duration-300 p-12 ${isScrolled ? "h-16" : "h-20"}`}
         >

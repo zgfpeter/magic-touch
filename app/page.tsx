@@ -177,15 +177,15 @@ export default function Home() {
         className="relative pt-20 flex flex-col justify-center items-center text-white overflow-hidden"
         aria-label="Dublin Construction Company Introduction"
       >
-        <Image
+        {/* <Image
           src="/assets/heading-bg.jpg"
           fill
           sizes="100vw"
           alt="Professional construction site in Dublin"
           className="object-cover -z-10 opacity-30 mix-blend-luminosity"
           priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950 -z-10" />
+        /> */}
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950 -z-10" /> */}
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -733,7 +733,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.7 }}
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 p-3.5 bg-handy-orange text-white rounded-full shadow-xl shadow-orange-950/30 hover:bg-orange-600 transition-colors z-50 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="scroll-to-top fixed bottom-6 right-6 p-3.5 bg-handy-orange text-white rounded-full shadow-xl shadow-orange-950/30 hover:bg-orange-600 transition-colors z-50 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             aria-label="Scroll back to top of webpage"
           >
             <LuArrowUp size={22} aria-hidden="true" />
