@@ -25,7 +25,7 @@ export default function ServicesPage() {
         iconColor: "text-amber-500",
         title: "Construction and structural work",
         desc: "",
-        imageUrl: "/assets/saemi-kim-4hcTkOw-EKE-unsplash.jpg",
+        imageUrl: "/assets/construction-structural.jpeg",
         includes: [
           "Ground works",
           "Reinforced concrete",
