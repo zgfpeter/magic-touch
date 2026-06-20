@@ -44,7 +44,7 @@ const services = [
     iconColor: "text-amber-500",
     title: "Construction & Structural",
     desc: "From groundworks to final product. We handle reinforced concrete, block wall construction, and precision timber frame structures across the Dublin area.",
-    imageUrl: "/assets/construction-structural.jpg",
+    imageUrl: "/assets/construction-structural.jpeg",
     animation: {
       rest: { rotate: 0 },
       hover: {
@@ -58,7 +58,7 @@ const services = [
     iconColor: "text-blue-400",
     title: "Garden Rooms & Granny Flats",
     desc: "Expand your living space with our specialized builds, including custom garden rooms, studio apartments, and fully equipped granny flats tailored to Dublin properties.",
-    imageUrl: "/assets/garden-room.jpg",
+    imageUrl: "/assets/garden-room.jpeg",
     animation: {
       rest: { scale: 1 },
       hover: {
@@ -207,8 +207,9 @@ export default function Home() {
 
           <div className="relative p-30 w-full overflow-hidden rounded-3xl border border-slate-700/60 shadow-2xl inline-block ">
             <Image
-              src="/assets/main-page.jpg"
+              src="/assets/main-page.jpeg"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               alt="Prime Build Construction Dublin Background"
               className="object-cover -z-10 opacity-50 mix-blend-luminosity"
             />
@@ -258,7 +259,7 @@ export default function Home() {
               className="w-full lg:w-1/2 relative h-[300px] sm:h-[400px] lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-slate-900 group"
             >
               <Image
-                src="/assets/about-us.jpg"
+                src="/assets/about-us.jpeg"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover transition-transform duration-700 opacity-90 group-hover:opacity-100"
@@ -404,7 +405,7 @@ export default function Home() {
           {/* === NEW: VIEW ALL PROJECTS BUTTON === */}
           <div className="mt-12 flex justify-end w-full relative z-20">
             <Link
-              href="/portfolio"
+              href="/projects"
               className="inline-flex items-center justify-center gap-2 py-3 px-8 rounded-full text-white border border-slate-700 bg-slate-900/50 hover:bg-slate-800 active:scale-98 transition-all font-bold shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange group"
             >
               <span>SEE MORE RECENT PROJECTS</span>

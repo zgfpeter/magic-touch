@@ -74,7 +74,7 @@ export default function Footer() {
                 width={200}
                 height={100}
                 sizes="(max-width: 768px) 200px, 200px" // Prevents Next.js warnings
-                alt="Magic Touch Logo"
+                alt="Prime Build Construction Logo"
                 className="object-contain rounded-xl flex-shrink-0 bg-white p-1"
                 priority
               />

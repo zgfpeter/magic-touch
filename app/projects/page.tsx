@@ -43,36 +43,15 @@ const projectsData = [
       "/assets/projects/studio/studio-4.jpg",
       "/assets/projects/studio/studio-5.jpg",
       "/assets/projects/studio/studio-6.jpg",
-      // "/assets/projects/studio/studio-7.jpg",
       "/assets/projects/studio/studio-8.jpg",
       "/assets/projects/studio/studio-9.jpg",
       "/assets/projects/studio/studio-10.jpg",
       "/assets/projects/studio/studio-11.jpg",
       "/assets/projects/studio/studio-12.jpg",
-      //"/assets/projects/studio/studio-13.jpg",
-      //"/assets/projects/studio/studio-14.jpg",
-      //"/assets/projects/studio/studio-15.jpg",
-      //"/assets/projects/studio/studio-16.jpg",
-      //"/assets/projects/studio/studio-17.jpg",
-      //"/assets/projects/studio/studio-18.jpg",
-      //"/assets/projects/studio/studio-19.jpg",
-      //"/assets/projects/studio/studio-20.jpg",
-      // "/assets/projects/studio/studio-21.jpg",
-      //"/assets/projects/studio/studio-22.jpg",
       "/assets/projects/studio/studio-23.jpg",
       "/assets/projects/studio/studio-24.jpg",
       "/assets/projects/studio/studio-25.jpg",
-      //"/assets/projects/studio/studio-26.jpg",
-      //"/assets/projects/studio/studio-27.jpg",
-      //"/assets/projects/studio/studio-28.jpg",
-      //"/assets/projects/studio/studio-29.jpg",
-      //"/assets/projects/studio/studio-30.jpg",
-      //"/assets/projects/studio/studio-31.jpg",
-      //"/assets/projects/studio/studio-32.jpg",
-      //"/assets/projects/studio/studio-33.jpg",
       "/assets/projects/studio/studio-34.jpg",
-      //"/assets/projects/studio/studio-35.jpg",
-      //"/assets/projects/studio/studio-36.jpg",
       "/assets/projects/studio/studio-41.jpg",
       "/assets/projects/studio/studio-37.jpg",
       "/assets/projects/studio/studio-39.jpg",
@@ -82,7 +61,6 @@ const projectsData = [
       "/assets/projects/studio/studio-42.jpg",
       "/assets/projects/studio/studio-43.jpg",
       "/assets/projects/studio/studio-44.jpg",
-      //"/assets/projects/studio/studio-45.jpg",
       "/assets/projects/studio/studio-47.jpg",
     ],
   },
@@ -154,7 +132,7 @@ const ProjectGallery = ({
           <LuChevronLeft size={28} />
         </button>
 
-        {/* Image Container (Removed max-w-lg, changed to aspect-[4/3]) */}
+        {/* Image Container */}
         <div className="relative flex-1 aspect-[4/3] w-full rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900 group">
           <AnimatePresence mode="wait">
             <motion.div
@@ -194,7 +172,7 @@ const ProjectGallery = ({
         </button>
       </div>
 
-      {/* Thumbnail Navigation Strip (Removed max-w-md, widened max-w-3xl) */}
+      {/* Thumbnail Navigation Strip */}
       <div className="flex gap-3 sm:gap-4 w-full max-w-3xl mx-auto h-24 sm:h-28 px-12 sm:px-0 mt-2">
         {visibleThumbnails.map(({ src, originalIndex }) => (
           <button
@@ -235,10 +213,11 @@ export default function ProjectsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-200 relative selection:bg-handy-orange selection:text-white overflow-hidden ">
+    <main className="min-h-screen bg-slate-950 text-slate-200 relative selection:bg-handy-orange selection:text-white overflow-x-hidden">
       <div className="relative min-h-screen flex flex-col">
+        {/* FIX 2: Changed h-[60vh] to min-h-[60vh] and added py-32 to allow the content to breathe on small screens */}
         {/* === START: HERO SECTION === */}
-        <section className="relative h-[60vh] flex flex-col justify-center items-center text-white overflow-hidden px-6">
+        <section className="relative min-h-[60vh] py-32 flex flex-col justify-center items-center text-white overflow-hidden px-6">
           <Image
             src={"/assets/heading-bg.jpg"}
             fill
@@ -273,7 +252,6 @@ export default function ProjectsPage() {
 
         {/* === START: PROJECTS SHOWCASE === */}
         <section className="py-12 md:py-24 bg-slate-950">
-          {/* UPGRADED: max-w-[100rem] allows it to be much wider on big screens */}
           <div className="max-w-[100rem] mx-auto px-6 lg:px-12 flex flex-col gap-32">
             {projectsData.map((project, idx) => (
               <motion.div

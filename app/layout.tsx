@@ -75,6 +75,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${sora.variable} h-full antialiased scroll-smooth`} // Added scroll-smooth for anchor links
+      data-scroll-behavior="smooth"
     >
       <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
         <Header />
