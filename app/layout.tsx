@@ -14,20 +14,21 @@ const sora = Sora({
 // 1. Enhanced Metadata for SEO & Social Media
 export const metadata: Metadata = {
   title: {
-    default: "Magic Touch | Professional Handyman & Painting Dublin",
-    template: "%s | Magic Touch Dublin", // This automatically adds the suffix to other pages (e.g., "About | Magic Touch Dublin")
+    default: "Prime Build Construction | Dublin",
+    template: "%s | Prime Build Construction", // This automatically adds the suffix to other pages (e.g., "About | Magic Touch Dublin")
   },
   description:
-    "Dublin's trusted local experts for professional home repairs, maintenance, and precision painting. Fully insured, reliable, and family-run. Book your free quote today!",
+    "Dublin's trusted local experts for small constructions, professional home repairs, maintenance, and precision painting. Fully insured and reliable. Book your quote today!",
   keywords: [
+    "Construction Dublin",
     "Handyman Dublin",
     "Painting Services Dublin",
     "Home Repairs Ireland",
     "Dublin Painter",
     "Property Maintenance Dublin",
   ],
-  authors: [{ name: "Magic Touch" }],
-  creator: "Magic Touch",
+  authors: [{ name: "Prime Build Construction" }],
+  creator: "Prime Build Construction",
   metadataBase: new URL("https://magic-touch-six.vercel.app/"), // Replace with your actual domain later
 
   // OpenGraph (How the link looks on Facebook/WhatsApp)
@@ -35,16 +36,17 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IE",
     url: "https://magic-touch-six.vercel.app/",
-    title: "Magic Touch | Handyman & Painting Services in Dublin",
+    title:
+      "Prime Build Construction | Small constructions and repairs services in Dublin",
     description:
       "Quality home repairs and professional painting across Dublin. We treat your home like our own.",
-    siteName: "Magic Touch Dublin",
+    siteName: "Prime Build Construction",
     images: [
       {
         url: "/assets/company-logo.jpg", // This will be the preview image when shared
         width: 1200,
         height: 630,
-        alt: "Magic Touch Handyman & Painting Dublin",
+        alt: "Prime Build Construction",
       },
     ],
   },
