@@ -184,7 +184,10 @@ export default function Footer() {
 
         {/* === COPYRIGHT BAR === */}
         <div className=" p-5 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-600">
-          <p>© {new Date().getFullYear()} Magic Touch. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} Prime Build Construction. All rights
+            reserved.
+          </p>
           <p>Designed with care for local homeowners.</p>
         </div>
       </div>

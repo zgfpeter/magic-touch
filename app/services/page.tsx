@@ -40,7 +40,7 @@ export default function ServicesPage() {
         iconColor: "text-cyan-500",
         title: "Interior finishes",
         desc: "",
-        imageUrl: "/assets/interior-painter.jpg",
+        imageUrl: "/assets/painter-2.jpeg",
         includes: [
           "Plasterboard installation",
           "Joint taping and skimming",
@@ -65,7 +65,7 @@ export default function ServicesPage() {
         iconColor: "text-stone-400",
         title: "General Home Repairs",
         desc: "",
-        imageUrl: "/assets/repairs.jpg",
+        imageUrl: "/assets/property-maintenance.jpeg",
         includes: [
           "Not every task fits in a box, talk to us about your specific project.",
         ],
@@ -109,7 +109,7 @@ export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-slate-950 py-24 md:py-34 selection:bg-handy-orange selection:text-white relative overflow-hidden">
       {/* === PAGE HEADER === */}
-      <section className="bg-slate-950 px-6 text-center border-b border-slate-900">
+      <section className="bg-slate-950 p-5 pb-10 text-center border-b border-slate-900">
         <div className="max-w-4xl mx-auto mt-12">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -139,7 +139,7 @@ export default function ServicesPage() {
           <p className="text-lg text-slate-400 leading-relaxed mb-6">
             Maintaining a home takes time, effort, and a wide variety of skills.
             Instead of calling a separate local painter, carpenter, and
-            repairman, TotalBuild Construction offers a complete, all-in-one
+            repairman, Prime Build Construction offers a complete, all-in-one
             building and maintenance solution tailored to the Dublin market.
           </p>
           <p className="text-lg text-slate-400 leading-relaxed">
@@ -173,7 +173,7 @@ export default function ServicesPage() {
                   src={service.imageUrl}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  alt={`TotalBuild Construction - ${service.title}`}
+                  alt={`Prime Build Construction - ${service.title}`}
                   className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100 mix-blend-luminosity group-hover:mix-blend-normal"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />

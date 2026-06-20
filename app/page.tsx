@@ -72,7 +72,7 @@ const services = [
     iconColor: "text-cyan-500",
     title: "Interior Finishes",
     desc: "Complete interior transformations including plasterboard installation, joint taping and skimming, painting and decorating, tiling, laminate flooring, and door/window installations.",
-    imageUrl: "/assets/repairs.jpg",
+    imageUrl: "/assets/interior-painter.jpeg",
     animation: {
       rest: { x: 0, rotate: 0 },
       hover: {
@@ -87,7 +87,7 @@ const services = [
     iconColor: "text-stone-400",
     title: "Property Maintenance",
     desc: "Keep your property in top shape with our maintenance services, covering everything from small construction jobs to general repairs for Dublin homeowners and landlords.",
-    imageUrl: "/assets/repairs.jpg",
+    imageUrl: "/assets/repairs.jpeg",
     animation: {
       rest: { rotate: 0 },
       hover: { rotate: [0, 45, 0, 45, 0], transition: { duration: 0.6 } },
@@ -98,7 +98,7 @@ const services = [
     iconColor: "text-emerald-500",
     title: "Exterior Cleaning & Power Washing",
     desc: "Gutter cleaning up to 2 storeys, power washing, and revitalization for driveways, patios, walls, and exterior surfaces.",
-    imageUrl: "/assets/repairs.jpg",
+    imageUrl: "/assets/powerwashing.jpeg",
     animation: {
       rest: { x: 0, y: 0 },
       hover: {
@@ -207,7 +207,7 @@ export default function Home() {
 
           <div className="relative p-30 w-full overflow-hidden rounded-3xl border border-slate-700/60 shadow-2xl inline-block ">
             <Image
-              src="/assets/repairs.jpg"
+              src="/assets/main-page.jpg"
               fill
               alt="Prime Build Construction Dublin Background"
               className="object-cover -z-10 opacity-50 mix-blend-luminosity"
@@ -486,6 +486,35 @@ export default function Home() {
                 </div>
               </motion.article>
             ))}
+            {/* === 6TH GRID ITEM: THE CTA CARD === */}
+            <motion.article
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              className="flex flex-col items-center justify-center bg-slate-900 border-2 border-dashed border-slate-700 hover:border-handy-orange/50 rounded-3xl p-8 text-center group transition-all duration-300 shadow-xl h-full min-h-[400px]"
+            >
+              <div className="mb-6 p-5 bg-slate-950 rounded-full group-hover:scale-110 transition-transform duration-500 shadow-inner">
+                <LuArrowRight
+                  className="w-10 h-10 text-handy-orange group-hover:translate-x-1 transition-transform"
+                  aria-hidden="true"
+                />
+              </div>
+
+              <h3 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 tracking-tight">
+                View All Services
+              </h3>
+
+              <p className="text-slate-400 text-base leading-relaxed mb-8 font-light">
+                Discover our complete range of professional services in detail.
+              </p>
+
+              <Link
+                href="/services"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-4 px-8 rounded-full text-white bg-handy-orange font-bold shadow-lg shadow-orange-950/40 hover:bg-orange-600 active:scale-98 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:ring-handy-orange"
+              >
+                <span>EXPLORE ALL</span>
+              </Link>
+            </motion.article>
           </div>
         </div>
       </section>
@@ -539,9 +568,9 @@ export default function Home() {
             Have a project in mind?
           </h2>
           <p className="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-light max-w-2xl mx-auto">
-            Get in touch with our team today. We'll discuss your requirements,
-            provide expert advice, and deliver a comprehensive quote for your
-            Dublin build.
+            Get in touch with our team today. We&apos;ll discuss your
+            requirements, provide expert advice, and deliver a comprehensive
+            quote for your Dublin build.
           </p>
 
           <Link
