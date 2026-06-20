@@ -1,1 +1,2 @@
-A website for a handyman / painting business
+A website for a construction company.
+Build with next js
