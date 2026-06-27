@@ -8,6 +8,7 @@ import {
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
+  PanInfo,
 } from "framer-motion";
 import {
   LuMapPin,
@@ -85,12 +86,15 @@ const ProjectGallery = ({
   };
 
   // Framer Motion Drag Handler for Mobile Swipe
-  const handleDragEnd = (event: any, info: any) => {
-    const swipeThreshold = 50; // Minimum distance to trigger a swipe
+  const handleDragEnd = (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo,
+  ) => {
+    const swipeThreshold = 50;
     if (info.offset.x < -swipeThreshold) {
-      handleNext(); // Swiped left
+      handleNext();
     } else if (info.offset.x > swipeThreshold) {
-      handlePrev(); // Swiped right
+      handlePrev();
     }
   };
 
@@ -119,38 +123,45 @@ const ProjectGallery = ({
   const visibleThumbnails = images
     .map((src, index) => ({ src, originalIndex: index }))
     .slice(startIdx, endIdx);
+
   return (
     <div
       className="w-full lg:w-2/3 flex flex-col gap-4 sm:gap-6 lg:self-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange rounded-2xl transition-all"
       tabIndex={0}
       onKeyDown={handleKeyDown}
       role="region"
+      aria-roledescription="carousel"
       aria-label={`${title} image gallery`}
     >
       {/* Featured Main Image Container */}
       <div className="flex items-center justify-center gap-0 sm:gap-6 w-full relative">
-        {/* Left Arrow (Hidden on Mobile) */}
+        {/* Left Arrow */}
         <button
+          type="button"
           onClick={handlePrev}
-          className="hidden sm:flex flex-shrink-0 z-20 p-3 rounded-full bg-slate-900 hover:bg-handy-orange text-white transition-all border border-slate-700 hover:border-handy-orange shadow-lg focus-visible:outline-none"
+          className="hidden sm:flex flex-shrink-0 z-20 p-3 rounded-full bg-slate-900 hover:bg-handy-orange text-white transition-all border border-slate-700 hover:border-handy-orange shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:ring-handy-orange"
+          aria-controls="gallery-image-wrapper"
           aria-label="Previous image"
         >
           <LuChevronLeft size={28} />
         </button>
 
-        {/* Image Frame (Taller on mobile, standard 4/3 on desktop) */}
-        {/* touch-pan-y ensures vertical scrolling isn't blocked by the slider */}
-        <div className="relative w-full sm:flex-1 aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900 touch-pan-y group">
+        {/* Image Frame */}
+        <div
+          id="gallery-image-wrapper"
+          className="relative w-full sm:flex-1 aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900 touch-pan-y group"
+          aria-roledescription="slide"
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              transition={{ duration: 0.2, ease: "easeInOut" }} // Slightly sped up for snappier mobile swiping
               className="absolute inset-0 cursor-grab active:cursor-grabbing"
-              // Add Framer Motion drag capabilities
               drag="x"
+              dragDirectionLock // Keeps swipes perfectly horizontal
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
               onDragEnd={handleDragEnd}
@@ -159,26 +170,30 @@ const ProjectGallery = ({
                 src={images[activeIndex]}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 50vw"
-                alt={`${title} - Image ${activeIndex + 1}`}
-                // Changed to cover on mobile for edge-to-edge feel, contain on desktop
+                alt={`${title} - Image ${activeIndex + 1} of ${images.length}`}
                 className="object-cover sm:object-contain transition-all duration-300 pointer-events-none"
                 priority
               />
-              {/* Subtle vignette */}
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-slate-950/60 pointer-events-none" />
             </motion.div>
           </AnimatePresence>
 
-          {/* Image Counter Badge */}
-          <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 z-20 bg-slate-950/80 backdrop-blur-sm px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-slate-300 border border-slate-800 pointer-events-none">
+          {/* Screen Reader Live Region - Announces slide changes automatically */}
+          <div
+            aria-live="polite"
+            aria-atomic="true"
+            className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 z-20 bg-slate-950/80 backdrop-blur-sm px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-slate-300 border border-slate-800 pointer-events-none"
+          >
             {activeIndex + 1} / {images.length}
           </div>
         </div>
 
-        {/* Right Arrow (Hidden on Mobile) */}
+        {/* Right Arrow */}
         <button
+          type="button"
           onClick={handleNext}
-          className="hidden sm:flex flex-shrink-0 z-20 p-3 rounded-full bg-slate-900 hover:bg-handy-orange text-white transition-all border border-slate-700 hover:border-handy-orange shadow-lg focus-visible:outline-none"
+          className="hidden sm:flex flex-shrink-0 z-20 p-3 rounded-full bg-slate-900 hover:bg-handy-orange text-white transition-all border border-slate-700 hover:border-handy-orange shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:ring-handy-orange"
+          aria-controls="gallery-image-wrapper"
           aria-label="Next image"
         >
           <LuChevronRight size={28} />
@@ -186,12 +201,21 @@ const ProjectGallery = ({
       </div>
 
       {/* Thumbnail Navigation Strip */}
-      <div className="flex gap-2 sm:gap-4 w-full max-w-3xl mx-auto h-20 sm:h-28 mt-2">
+      <div
+        className="flex justify-center gap-2 sm:gap-4 w-full max-w-3xl mx-auto h-20 sm:h-28 mt-2"
+        role="tablist"
+        aria-label="Thumbnail navigation"
+      >
         {visibleThumbnails.map(({ src, originalIndex }) => (
           <button
             key={originalIndex}
+            type="button"
+            role="tab"
+            aria-selected={activeIndex === originalIndex}
+            aria-controls="gallery-image-wrapper"
             onClick={() => setActiveIndex(originalIndex)}
-            className={`relative flex-1 rounded-xl overflow-hidden border-2 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange ${
+            // Changed from flex-1 to a fixed max-width fraction so small amounts of images don't stretch
+            className={`relative w-[18%] sm:w-[15%] max-w-[120px] rounded-xl overflow-hidden border-2 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-handy-orange ${
               activeIndex === originalIndex
                 ? "border-handy-orange opacity-100 scale-[0.98]"
                 : "border-slate-800 opacity-40 hover:opacity-100 hover:border-slate-600 mix-blend-luminosity hover:mix-blend-normal"
@@ -202,7 +226,7 @@ const ProjectGallery = ({
               src={src}
               fill
               sizes="(max-width: 768px) 20vw, 15vw"
-              alt={`${title} thumbnail ${originalIndex + 1}`}
+              alt={`Thumbnail ${originalIndex + 1}`}
               className="object-cover pointer-events-none"
             />
           </button>
@@ -231,14 +255,6 @@ export default function ProjectsPage() {
         {/* FIX 2: Changed h-[60vh] to min-h-[60vh] and added py-32 to allow the content to breathe on small screens */}
         {/* === START: HERO SECTION === */}
         <section className="relative min-h-[60vh] py-32 flex flex-col justify-center items-center text-white overflow-hidden px-6">
-          <Image
-            src={"/assets/heading-bg.jpg"}
-            fill
-            sizes="100vw"
-            alt="TotalBuild Construction past projects and portfolio"
-            className="object-cover -z-10 opacity-30 mix-blend-luminosity"
-            priority
-          />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/80 to-slate-950 -z-0" />
 
           <motion.div
