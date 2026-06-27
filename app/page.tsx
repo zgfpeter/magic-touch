@@ -184,62 +184,65 @@ export default function Home() {
           priority
         /> */}
         {/* <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950 -z-10" /> */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 max-w-5xl text-center flex flex-col items-center gap-6"
-        >
-          {/* SEO Location Badge */}
-          <div className="flex items-center gap-2 bg-slate-950/80 px-4 py-2 rounded-full border border-slate-800 shadow-inner">
-            <LuMapPin
-              className="text-handy-orange"
-              size={16}
-              aria-hidden="true"
-            />
-            <span className="text-slate-300 font-semibold tracking-widest text-xs uppercase">
-              Laois Based, Serving All of Ireland
-            </span>
-          </div>
-
-          <div className="relative p-30 w-full overflow-hidden rounded-3xl border border-slate-700/60 shadow-2xl inline-block ">
-            <Image
-              src="/assets/company-logo-hi-vis-1.jpeg"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              alt="Prime Build Construction Ireland Background"
-              className="object-cover -z-10 opacity-50 mix-blend-luminosity"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/60 to-slate-950/90 -z-10" />
-
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight">
-              Prime Build{" "}
-              <span className="text-handy-orange">Construction</span>
-            </h1>
-          </div>
-          <p className="text-base sm:text-lg md:text-2xl text-slate-400 leading-relaxed max-w-3xl font-light">
-            Reliable Ireland construction company delivering high-quality work,
-            from groundworks to the final product. Whether it&apos;s a small
-            repair or a full build, we bring exact precision and enduring
-            craftsmanship to every project.
-          </p>
-          <div className="mt-4 flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center py-4 px-10 rounded-full text-white bg-handy-orange font-bold shadow-lg shadow-orange-950/40 hover:bg-orange-600 active:scale-98 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:ring-handy-orange"
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative z-10 max-w-5xl text-center flex flex-col items-center gap-6"
             >
-              REQUEST A QUOTE
-            </Link>
-            <Link
-              href="tel:+1234567890"
-              className="inline-flex items-center justify-center gap-3 py-4 px-10 rounded-full text-white border border-slate-800 bg-slate-900/50 backdrop-blur-md font-bold hover:bg-slate-800 active:scale-98 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:ring-handy-orange"
-            >
-              <LuPhone size={20} aria-hidden="true" />
-              <span>CALL US NOW</span>
-            </Link>
+              {/* SEO Location Badge */}
+              <div className="flex items-center gap-2 bg-slate-950/80 px-4 py-2 rounded-full border border-slate-800 shadow-inner">
+                <LuMapPin
+                  className="text-handy-orange"
+                  size={16}
+                  aria-hidden="true"
+                />
+                <span className="text-slate-300 font-semibold tracking-widest text-xs uppercase">
+                  Laois Based, Serving All of Ireland
+                </span>
+              </div>
+
+              <div className="relative p-30 w-full overflow-hidden rounded-3xl border border-slate-700/60 shadow-2xl inline-block ">
+                <Image
+                  src="/assets/company-logo-hi-vis-1.jpeg"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  alt="Prime Build Construction Ireland Background"
+                  className="object-cover -z-10 opacity-50 mix-blend-luminosity"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/60 to-slate-950/90 -z-10" />
+
+                <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight">
+                  Prime Build{" "}
+                  <span className="text-handy-orange">Construction</span>
+                </h1>
+              </div>
+              <p className="text-base sm:text-lg text-slate-400 mb-6 leading-relaxed font-light">
+                Reliable Ireland construction company delivering high-quality
+                work, from groundworks to the final product. Whether it&apos;s a
+                small repair or a full build, we bring exact precision and
+                enduring craftsmanship to every project.
+              </p>
+              <div className="mt-4 flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center py-4 px-10 rounded-full text-white bg-handy-orange font-bold shadow-lg shadow-orange-950/40 hover:bg-orange-600 active:scale-98 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:ring-handy-orange"
+                >
+                  REQUEST A QUOTE
+                </Link>
+                <Link
+                  href="tel:+1234567890"
+                  className="inline-flex items-center justify-center gap-3 py-4 px-10 rounded-full text-white border border-slate-800 bg-slate-900/50 backdrop-blur-md font-bold hover:bg-slate-800 active:scale-98 transition-all text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:ring-handy-orange"
+                >
+                  <LuPhone size={20} aria-hidden="true" />
+                  <span>CALL US NOW</span>
+                </Link>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* === ABOUT US TEASER === */}
