@@ -172,18 +172,9 @@ export default function Home() {
     <main className="min-h-screen bg-slate-950 text-slate-200 relative selection:bg-handy-orange selection:text-white pt-20">
       {/* === HERO SECTION === */}
       <section
-        className="relative pt-20 flex flex-col justify-center items-center text-white overflow-hidden"
-        aria-label="Ireland Construction Company Introduction"
+        className="bg-slate-950 py-20  md:py-28 border-b border-slate-900"
+        aria-labelledby="about-heading"
       >
-        {/* <Image
-          src="/assets/heading-bg.jpg"
-          fill
-          sizes="100vw"
-          alt="Professional construction site in Ireland"
-          className="object-cover -z-10 opacity-30 mix-blend-luminosity"
-          priority
-        /> */}
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950 -z-10" /> */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <motion.div
