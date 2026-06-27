@@ -43,7 +43,7 @@ export async function GET() {
                 },
                 rating: 5,
                 text: {
-                    text: "Absolutely incredible service! They were punctual, extremely professional, and left the workspace spotless after painting my living room. Highly recommend the Magic Touch team!",
+                    text: "Absolutely incredible service! They were punctual, extremely professional, and left the workspace spotless after painting my living room. Highly recommend the Prime Build Construction team!",
                 },
                 relativePublishTimeDescription: "2 days ago",
             },
@@ -54,7 +54,7 @@ export async function GET() {
                 },
                 rating: 5,
                 text: {
-                    text: "Fixed our sticking back door and patched up some damaged drywall effortlessly. It is so hard to find reliable tradespeople in Dublin, but these guys are fantastic.",
+                    text: "Fixed our sticking back door and patched up some damaged drywall effortlessly. It is so hard to find reliable tradespeople in Ireland, but these guys are fantastic.",
                 },
                 relativePublishTimeDescription: "1 week ago",
             },

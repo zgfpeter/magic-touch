@@ -14,32 +14,38 @@ const sora = Sora({
 // 1. Enhanced Metadata for SEO & Social Media
 export const metadata: Metadata = {
   title: {
-    default: "Prime Build Construction | Dublin",
-    template: "%s | Prime Build Construction", // This automatically adds the suffix to other pages (e.g., "About | Magic Touch Dublin")
+    default: "Prime Build Construction",
+    template: "%s | Prime Build Construction", // This automatically adds the suffix to other pages (e.g., "About | Prime Build Construction")
   },
   description:
-    "Dublin's trusted local experts for small constructions, professional home repairs, maintenance, and precision painting. Fully insured and reliable. Book your quote today!",
+    "Ireland's trusted local experts for small constructions, professional home repairs, maintenance, and precision painting. Fully insured and reliable. Book your quote today!",
   keywords: [
-    "Construction Dublin",
-    "Handyman Dublin",
-    "Painting Services Dublin",
+    "Construction Ireland",
+    "Handyman Ireland",
+    "Painting Services Ireland",
     "Home Repairs Ireland",
-    "Dublin Painter",
-    "Property Maintenance Dublin",
+    "Ireland Painting Company",
+    "Property Maintenance Ireland",
+    "Construction Ireland",
+    "Handyman Ireland",
+    "Painting Services Ireland",
+    "Home Repairs Ireland",
+    "Irelandg Painting Company",
+    "Property Maintenance Ireland",
   ],
   authors: [{ name: "Prime Build Construction" }],
   creator: "Prime Build Construction",
-  metadataBase: new URL("https://magic-touch-six.vercel.app/"), // Replace with your actual domain later
+  metadataBase: new URL("https://prime-build-construction.vercel.app/"), // Replace with your actual domain later
 
   // OpenGraph (How the link looks on Facebook/WhatsApp)
   openGraph: {
     type: "website",
     locale: "en_IE",
-    url: "https://magic-touch-six.vercel.app/",
+    url: "https://prime-build-construction.vercel.app/",
     title:
-      "Prime Build Construction | Small constructions and repairs services in Dublin",
+      "Prime Build Construction | Small constructions and repairs services in Ireland",
     description:
-      "Quality home repairs and professional painting across Dublin. We treat your home like our own.",
+      "Quality construction work, home repairs and professional painting across Ireland. We treat your home like our own.",
     siteName: "Prime Build Construction",
     images: [
       {
@@ -77,7 +83,7 @@ export default function RootLayout({
       className={`${sora.variable} h-full antialiased scroll-smooth`} // Added scroll-smooth for anchor links
       data-scroll-behavior="smooth"
     >
-      <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+      <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 ">
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />

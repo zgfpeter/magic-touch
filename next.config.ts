@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "ui-avatars.com",
+      },
+
+      {
+        protocol: "https",
         hostname: "*.googleusercontent.com", // Whitelists Google profile pictures
       },
     ],

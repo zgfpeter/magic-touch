@@ -1,64 +1,75 @@
 "use client";
 
-import { MapContainer, TileLayer, Polygon, Circle } from "react-leaflet";
+import { useState, useEffect } from "react";
+import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { GeoJsonObject } from "geojson";
+import L from "leaflet";
 
+const customPinIcon = L.divIcon({
+  html: `<div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center animate-bounce">
+           <div class="w-2 h-2 bg-white rounded-full"></div>
+         </div>`,
+  className: "", // Clear default Leaflet styles so our Tailwind classes work
+  iconSize: [24, 24],
+  iconAnchor: [12, 24], // Centers the bottom point of the pin exactly on the coordinates
+});
 export default function ServiceAreaMap() {
-  // 1. The center point of the map (Currently set to Dublin)
-  const mapCenter: [number, number] = [53.3498, -6.2603];
+  const mapCenter: [number, number] = [53.4239, -7.9407]; // Centered on Athlone
+  const companyLocation: [number, number] = [53.3498, -6.2603];
+  // State to hold geographic border data
+  const [irelandGeoData, setIrelandGeoData] = useState<GeoJsonObject | null>(
+    null,
+  );
 
-  // 2. A custom Polygon (Draws exact neighborhood boundaries)
-
-  const servicePerimeter: [number, number][] = [
-    [53.45644988428501, -6.138290010612053],
-    [53.45185360120888, -6.35940595639687],
-    [53.373187496833424, -6.47757415244061],
-    [53.30632015677736, -6.5373985217140955],
-    [53.23587070569417, -6.4974222168562505],
-    [53.1948601937205, -6.373380595629214],
-    [53.19266080714149, -6.19392038372024],
-    [53.19976489735737, -6.0969311527905745],
-    [53.3823398043061, -6.0477787105845096],
-    [53.45644988428501, -6.138290010612053],
-  ];
+  useEffect(() => {
+    // Fetch an open-source GeoJSON file containing Ireland's borders
+    // Note: This specific file outlines the Republic of Ireland.
+    fetch("/ie.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setIrelandGeoData(data);
+      })
+      .catch((error) => console.error("Error loading GeoJSON:", error));
+  }, []);
 
   return (
-    // We set a z-index of 0 so the map doesn't overlap any dropdown menus later
     <div className="w-full h-full relative z-0">
       <MapContainer
         center={mapCenter}
-        zoom={10}
+        zoom={6}
         style={{ height: "100%", width: "100%", borderRadius: "0.75rem" }}
-        scrollWheelZoom={false} // Prevents the page from getting stuck when scrolling down
+        scrollWheelZoom={false}
       >
-        {/* The actual map tiles (OpenStreetMap is free to use) */}
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* OPTION A: A specific Polygon boundary */}
-        {/* <Polygon
-          positions={servicePerimeter}
-          pathOptions={{
-            color: "#ea580c",
-            fillColor: "#ea580c",
-            fillOpacity: 0.2,
-            weight: 2,
-          }}
-        /> */}
-
-        {/* OPTION B: A clean 10km radius circle (Currently Active) */}
-        <Circle
-          center={mapCenter}
-          radius={12000} // Radius in meters (12km)
-          pathOptions={{
-            color: "#ea580c",
-            fillColor: "#ea580c",
-            fillOpacity: 0.2,
-            weight: 2,
-          }}
-        />
+        {/* Only render the GeoJSON once the data has finished fetching */}
+        {irelandGeoData && (
+          <GeoJSON
+            data={irelandGeoData}
+            style={{
+              color: "#ea580c",
+              fillColor: "#ea580c",
+              fillOpacity: 0.2,
+              weight: 2,
+            }}
+          />
+        )}
+        <Marker position={companyLocation} icon={customPinIcon}>
+          <Popup>
+            <div className="text-slate-900 font-sans p-1">
+              <strong className="block text-sm font-bold">
+                Prime Build Construction
+              </strong>
+              <span className="text-xs text-slate-600">
+                Dublin Headquarters
+              </span>
+            </div>
+          </Popup>
+        </Marker>
       </MapContainer>
     </div>
   );

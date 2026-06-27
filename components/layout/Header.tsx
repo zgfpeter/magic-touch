@@ -78,7 +78,7 @@ export default function Header() {
           </div>
         </div> */}
         <div
-          className={`flex justify-between items-center transition-all duration-300 p-12 ${isScrolled ? "h-16" : "h-20"}`}
+          className={`flex justify-between items-center transition-all duration-300 p-3 ${isScrolled ? "h-20" : "h-25"}`}
         >
           {/* Brand Logo */}
           <div className="flex-shrink-0 flex items-center">
@@ -88,12 +88,12 @@ export default function Header() {
               aria-label="Prime Build Construction Homepage"
             >
               <Image
-                src="/assets/company-logo.jpeg"
-                width={130}
-                height={52}
-                sizes="(max-width: 1024px) 105px, 130px"
+                src="/prime-build-construction-logo.jpg"
+                width={256}
+                height={256}
+                sizes="(max-width: 256px) 48px, 32px"
                 alt="Prime Build Construction Logo"
-                className="w-auto h-9 md:h-11 object-contain rounded-md transition-transform group-hover:scale-[1.02] bg-white p-1"
+                className="w-auto h-9 md:h-14 object-contain rounded-md transition-transform group-hover:scale-[1.02] bg-white p-1"
                 priority
               />
               {/* <span className="text-lg font-black tracking-tight text-white hidden sm:block">
@@ -245,7 +245,9 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute top-full left-0 w-full h-[calc(100vh-5rem)] bg-slate-950 border-t border-slate-900 flex flex-col justify-between px-6 py-8 lg:hidden overflow-y-auto"
+            // FIX 1: Changed 100vh to 100dvh, adjusted height math to account for the header,
+            // removed justify-between, and added safe bottom padding (pb-12).
+            className="absolute top-full left-0 w-full h-[calc(100dvh-100px)] bg-slate-950 border-t border-slate-900 flex flex-col px-6 pt-6 pb-12 lg:hidden overflow-y-auto"
           >
             <nav
               aria-label="Mobile Navigation"
@@ -271,11 +273,12 @@ export default function Header() {
               })}
             </nav>
 
-            <div className="flex flex-col gap-3 border-t border-slate-900 pt-6">
+            {/* FIX 2: Added `mt-auto` to naturally push the buttons to the bottom of the screen */}
+            <div className="mt-20 flex flex-col gap-3 border-t border-slate-900 pt-6">
               <Link
                 href="tel:+1234567890"
                 onClick={() => setMenuOpen(false)}
-                className="flex justify-center items-center gap-2 p-3.5 text-slate-300 border border-slate-800 bg-slate-900/30 rounded-xl text-sm font-medium"
+                className="flex justify-center items-center gap-2 p-5 text-slate-300 border border-slate-800 bg-slate-900/30 rounded-xl text-sm font-medium"
               >
                 <LuPhone size={16} className="text-handy-orange" />
                 <span>+1 234 567 890</span>
@@ -283,7 +286,7 @@ export default function Header() {
               <Link
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="flex justify-center items-center gap-2 p-3.5 bg-handy-orange text-white rounded-xl text-sm font-bold shadow-md"
+                className="flex justify-center items-center gap-2 p-5 bg-handy-orange text-white rounded-xl text-sm font-bold shadow-md"
               >
                 <span>Get a Quote</span>
                 <LuArrowRight size={16} />

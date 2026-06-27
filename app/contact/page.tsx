@@ -187,7 +187,7 @@ export default function ContactPage() {
             </div>
             <p className="leading-relaxed">
               Proudly serving the{" "}
-              <strong className="text-white">entire area of Dublin</strong>.
+              <strong className="text-white">entire area of Ireland</strong>.
               Whether you&apos;re north or south of the Liffey,
               PrimeBuildConstruction brings fully insured, multi-trade
               capability right to your doorstep.

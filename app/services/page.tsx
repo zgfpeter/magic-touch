@@ -53,7 +53,7 @@ export default function ServicesPage() {
         iconColor: "text-blue-400",
         title: "Property maintenance",
         desc: "",
-        imageUrl: "/assets/exterior-painter.jpg",
+        imageUrl: "/assets/exterior-painter.jpeg",
         includes: [
           "Gutter cleaning up to 2 storeys",
           "Power washing",
@@ -73,8 +73,8 @@ export default function ServicesPage() {
       // {
       //   Icon: LuFence,
       //   iconColor: "text-emerald-500",
-      //   title: "Dublin Driveway & Patio Power Washing",
-      //   desc: "Over time, Dublin's damp climate causes driveways, patios, and walkways to accumulate a thick, slippery layer of algae, moss, and dirt. This not only diminishes your property's appearance but creates a serious slipping hazard. Our commercial-grade high-pressure washing service safely blasts away years of built-up grime, instantly restoring your exterior surfaces. It is the fastest way to rejuvenate your outdoor spaces and prep decks for new stain.",
+      //   title: "Ireland Driveway & Patio Power Washing",
+      //   desc: "Over time, Ireland's damp climate causes driveways, patios, and walkways to accumulate a thick, slippery layer of algae, moss, and dirt. This not only diminishes your property's appearance but creates a serious slipping hazard. Our commercial-grade high-pressure washing service safely blasts away years of built-up grime, instantly restoring your exterior surfaces. It is the fastest way to rejuvenate your outdoor spaces and prep decks for new stain.",
       //   imageUrl: "/assets/powerwashing.jpg",
       //   includes: [
       //     "Concrete driveway and sidewalk deep cleaning",
@@ -125,7 +125,7 @@ export default function ServicesPage() {
             className="text-lg md:text-xl text-slate-400 leading-relaxed"
           >
             Comprehensive property maintenance, expert painting, and reliable
-            repairs for homeowners across Dublin City and County Dublin.
+            repairs for homeowners across Ireland.
           </motion.p>
         </div>
       </section>
@@ -140,13 +140,13 @@ export default function ServicesPage() {
             Maintaining a home takes time, effort, and a wide variety of skills.
             Instead of calling a separate local painter, carpenter, and
             repairman, Prime Build Construction offers a complete, all-in-one
-            building and maintenance solution tailored to the Dublin market.
+            building and maintenance solution tailored to the Ireland market.
           </p>
           <p className="text-lg text-slate-400 leading-relaxed">
             We pride ourselves on doing the job right the first time. Whether we
-            are completing a full interior painting project in South Dublin or
+            are completing a full interior painting project in South Ireland or
             working through a monthly property maintenance checklist in North
-            Dublin, we bring professional-grade equipment, premium materials,
+            Ireland, we bring professional-grade equipment, premium materials,
             and a meticulous eye for detail to every property we enter. Explore
             our core services below.
           </p>
@@ -202,7 +202,7 @@ export default function ServicesPage() {
                   <div className="absolute -right-20 -top-20 w-40 h-40 bg-handy-orange opacity-5 blur-3xl rounded-full pointer-events-none" />
 
                   {/* <h3 className="font-bold text-slate-300 mb-6 tracking-wide uppercase text-sm border-b border-slate-800 pb-3">
-                    Commonly Included in our Dublin Services:
+                    Commonly Included in our Ireland Services:
                   </h3> */}
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
                     {service.includes.map((item, i) => (
@@ -231,20 +231,20 @@ export default function ServicesPage() {
 
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
-            Need a Custom Build or Repair in Dublin?
+            Need a Custom Build or Repair in Ireland?
           </h2>
           <p className="text-lg text-slate-400 mb-10 max-w-2xl leading-relaxed">
             Every home is unique. If you have a custom project, structural
             extension, or need a combination of construction services across
-            County Dublin, just give us a call. We&apos;re happy to discuss how
-            we can bring your vision to life.
+            Ireland, just give us a call. We&apos;re happy to discuss how we can
+            bring your vision to life.
           </p>
           <div className="flex flex-col sm:flex-row gap-5">
             <Link
               href="/contact"
               className="bg-handy-orange text-white font-extrabold text-lg px-10 py-4 rounded-full shadow-[0_0_20px_rgba(234,88,12,0.4)] hover:shadow-[0_0_30px_rgba(234,88,12,0.6)] hover:-translate-y-1 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              Request a Local Quote
+              Contact Form
             </Link>
             <a
               href="tel:+353000000000"

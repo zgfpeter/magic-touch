@@ -26,7 +26,7 @@ const projectsData = [
   {
     id: "rathmines-studio",
     title: "Studio from start to finish",
-    location: "Rathmines, Dublin",
+    location: "Rathmines, Ireland",
     description:
       "We delivered a complete, start-to-finish construction of a new small studio, managing every aspect of the project from the ground up. Navigate through the photos to see the completed project.",
     services: [

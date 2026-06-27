@@ -19,7 +19,7 @@ const processSteps = [
     stepNumber: "01",
     Icon: LuClipboardPen,
     title: "Consultation & Scoping",
-    desc: "Every successful build starts with complete clarity. We begin with a thorough site visit at your Dublin property to understand your vision and assess the project requirements.",
+    desc: "Every successful build starts with complete clarity. We begin with a thorough site visit at your Ireland property to understand your vision and assess the project requirements.",
     img: "/assets/consultation.jpeg", // Replace with an image of planning/consulting
   },
   {
@@ -84,7 +84,7 @@ export default function AboutPage() {
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-slate-400 leading-relaxed max-w-3xl mx-auto font-light mb-6">
               PrimeBuildConstruction provides high-quality building, renovation,
-              and maintenance services across Dublin. Our team of professionals
+              and maintenance services across Ireland. Our team of professionals
               delivers quality results for every project.
             </p>
           </motion.div>
@@ -181,7 +181,7 @@ export default function AboutPage() {
             </h2>
             <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto font-light">
               Whether it is a structural extension, a custom garden room, or a
-              full property renovation across Dublin, our team is ready to
+              full property renovation across Ireland, our team is ready to
               deliver.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">

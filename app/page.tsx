@@ -18,11 +18,11 @@ import {
   LuUsers,
   LuMessageSquare,
   LuMapPin,
-  LuArrowRight, // <-- Added for location badges
+  LuArrowRight,
 } from "react-icons/lu";
 
 import HandymanDivider from "@/components/ui/HandymanDivider";
-
+import { irReviews, INReview } from "@/app/data/reviews"; // Adjust path as needed
 const portfolio = [
   {
     id: 1,
@@ -43,7 +43,7 @@ const services = [
     Icon: LuHammer,
     iconColor: "text-amber-500",
     title: "Construction & Structural",
-    desc: "From groundworks to final product. We handle reinforced concrete, block wall construction, and precision timber frame structures across the Dublin area.",
+    desc: "From groundworks to final product. We handle reinforced concrete, block wall construction, and precision timber frame structures across Ireland.",
     imageUrl: "/assets/construction-structural.jpeg",
     animation: {
       rest: { rotate: 0 },
@@ -57,7 +57,7 @@ const services = [
     Icon: LuHouse,
     iconColor: "text-blue-400",
     title: "Garden Rooms & Granny Flats",
-    desc: "Expand your living space with our specialized builds, including custom garden rooms, studio apartments, and fully equipped granny flats tailored to Dublin properties.",
+    desc: "Expand your living space with our specialized builds, including custom garden rooms, studio apartments, and fully equipped granny flats tailored to Ireland properties.",
     imageUrl: "/assets/garden-room.jpeg",
     animation: {
       rest: { scale: 1 },
@@ -86,7 +86,7 @@ const services = [
     Icon: LuWrench,
     iconColor: "text-stone-400",
     title: "Property Maintenance",
-    desc: "Keep your property in top shape with our maintenance services, covering everything from small construction jobs to general repairs for Dublin homeowners and landlords.",
+    desc: "Keep your property in top shape with our maintenance services, covering everything from small construction jobs to general repairs for Ireland homeowners and landlords.",
     imageUrl: "/assets/repairs.jpeg",
     animation: {
       rest: { rotate: 0 },
@@ -124,7 +124,6 @@ interface GoogleReview {
     displayName: string;
     photoUri?: string;
   };
-  rating: number;
   text: {
     text: string;
   };
@@ -155,18 +154,17 @@ export default function Home() {
   };
 
   useEffect(() => {
-    async function fetchReviews() {
+    const fetchReviews = async () => {
       try {
-        const res = await fetch("/api/reviews");
-        const data = await res.json();
-        setGoogleReviews(data.reviews || []);
-        setAverageRating(data.rating || 0);
+        await new Promise((resolve) => setTimeout(resolve, 600));
+        setGoogleReviews(irReviews);
       } catch (err) {
         console.error("Error loading reviews", err);
       } finally {
         setLoading(false);
       }
-    }
+    };
+
     fetchReviews();
   }, []);
 
@@ -175,13 +173,13 @@ export default function Home() {
       {/* === HERO SECTION === */}
       <section
         className="relative pt-20 flex flex-col justify-center items-center text-white overflow-hidden"
-        aria-label="Dublin Construction Company Introduction"
+        aria-label="Ireland Construction Company Introduction"
       >
         {/* <Image
           src="/assets/heading-bg.jpg"
           fill
           sizes="100vw"
-          alt="Professional construction site in Dublin"
+          alt="Professional construction site in Ireland"
           className="object-cover -z-10 opacity-30 mix-blend-luminosity"
           priority
         /> */}
@@ -201,16 +199,16 @@ export default function Home() {
               aria-hidden="true"
             />
             <span className="text-slate-300 font-semibold tracking-widest text-xs uppercase">
-              Serving All of Dublin & Surrounding Areas
+              Laois Based, Serving All of Ireland
             </span>
           </div>
 
           <div className="relative p-30 w-full overflow-hidden rounded-3xl border border-slate-700/60 shadow-2xl inline-block ">
             <Image
-              src="/assets/main-page.jpeg"
+              src="/assets/company-logo-hi-vis-1.jpeg"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              alt="Prime Build Construction Dublin Background"
+              alt="Prime Build Construction Ireland Background"
               className="object-cover -z-10 opacity-50 mix-blend-luminosity"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/60 to-slate-950/90 -z-10" />
@@ -221,7 +219,7 @@ export default function Home() {
             </h1>
           </div>
           <p className="text-base sm:text-lg md:text-2xl text-slate-400 leading-relaxed max-w-3xl font-light">
-            Reliable Dublin construction company delivering high-quality work,
+            Reliable Ireland construction company delivering high-quality work,
             from groundworks to the final product. Whether it&apos;s a small
             repair or a full build, we bring exact precision and enduring
             craftsmanship to every project.
@@ -263,7 +261,7 @@ export default function Home() {
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover transition-transform duration-700 opacity-90 group-hover:opacity-100"
-                alt="Dublin construction professionals on site"
+                alt="Ireland construction professionals on site"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
             </motion.div>
@@ -284,16 +282,16 @@ export default function Home() {
                 id="about-heading"
                 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight tracking-tighter"
               >
-                Your Trusted Dublin Builders. <br></br>{" "}
+                Your Trusted Ireland Builders. <br></br>{" "}
                 <span className="text-slate-400">Start to Finish.</span>
               </h2>
 
               <p className="text-base sm:text-lg text-slate-400 mb-6 leading-relaxed font-light">
-                PrimeBuildConstruction is a growing Dublin-based company built
-                on hard work, practical experience, and a commitment to doing
-                the right job. Our goal is to offer clients a stress-free
+                PrimeBuildConstruction is a growing Laois, Ireland based company
+                built on hard work, practical experience, and a commitment to
+                doing the right job. Our goal is to offer clients a stress-free
                 experience by managing multiple stages of a project under one
-                company across the greater Dublin area.
+                company across the greater Ireland area.
               </p>
               <p className="text-base sm:text-lg text-slate-400 mb-6 leading-relaxed font-light">
                 We maintain core standards of high quality, consistency,
@@ -324,7 +322,7 @@ export default function Home() {
                 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tighter"
               >
                 Recent{" "}
-                <span className="text-slate-400">Projects In Dublin.</span>
+                <span className="text-slate-400">Projects In Ireland.</span>
               </h2>
             </div>
           </div>
@@ -340,7 +338,7 @@ export default function Home() {
                   src={item.img}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  alt={`PrimeBuildConstruction ${item.title} project in Dublin`}
+                  alt={`PrimeBuildConstruction ${item.title} project in Ireland`}
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
@@ -375,7 +373,7 @@ export default function Home() {
                     src={item.img}
                     fill
                     sizes="40vw"
-                    alt={`PrimeBuildConstruction ${item.title} project in Dublin`}
+                    alt={`PrimeBuildConstruction ${item.title} project in Ireland`}
                     className="object-cover pointer-events-none"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-90 pointer-events-none" />
@@ -448,7 +446,7 @@ export default function Home() {
                       src={service.imageUrl}
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      alt={`Prime Build ${service.title} services in Dublin`}
+                      alt={`Prime Build ${service.title} services in Ireland`}
                       className="object-cover object-center transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100"
                     />
                   ) : (
@@ -533,7 +531,7 @@ export default function Home() {
             </h2>
             <p className="text-slate-400 max-w-2xl mx-auto">
               We combine skilled labour, the right tools, and a strong work
-              ethic to deliver reliable results on every job in Dublin.
+              ethic to deliver reliable results on every job in Ireland.
             </p>
           </div>
 
@@ -571,7 +569,7 @@ export default function Home() {
           <p className="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-light max-w-2xl mx-auto">
             Get in touch with our team today. We&apos;ll discuss your
             requirements, provide expert advice, and deliver a comprehensive
-            quote for your Dublin build.
+            quote for your Ireland build.
           </p>
 
           <Link
@@ -591,16 +589,13 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
             <div>
               <h2 className="text-3xl font-extrabold text-white tracking-tight">
-                Trusted by local dublin clients
+                Trusted by local Ireland clients
               </h2>
-              <p className="text-slate-400 text-sm font-light mt-1">
-                Real reviews directly from Google.
-              </p>
             </div>
 
-            {!loading && (
-              <div className="flex flex-col items-center gap-3 bg-slate-950/60 border border-slate-800 py-3 px-6 rounded-2xl w-fit">
-                <div className="flex items-center justify-evenly w-full">
+            {/* {!loading && ( */}
+            {/* <div className="flex flex-col items-center gap-3 bg-slate-950/60 border border-slate-800 py-3 px-6 rounded-2xl w-fit"> */}
+            {/* <div className="flex items-center justify-evenly w-full">
                   <span className="text-white font-extrabold text-lg">
                     {averageRating}{" "}
                     <span className="text-slate-400 font-light text-xs">
@@ -610,10 +605,10 @@ export default function Home() {
                   <div className="flex text-handy-orange text-sm">
                     {"★".repeat(Math.round(averageRating))}
                   </div>
-                </div>
-                <div className=" w-fit">
-                  {/* UPDATED: Authentic Colorful Google G-Logo Button */}
-                  <a
+                </div> */}
+            {/* <div className=" w-fit"> */}
+            {/* UPDATED: Authentic Colorful Google G-Logo Button */}
+            {/* <a
                     href="https://www.google.com/maps/place/YOUR_BUSINESS_PLACE_ID_OR_CID_LINK"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -642,13 +637,13 @@ export default function Home() {
                       />
                     </svg>
                     <span>View on Google</span>
-                  </a>
-                </div>
-              </div>
-            )}
+                  </a> */}
+            {/* </div> */}
+            {/* </div> */}
+            {/* )} */}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {loading ? (
               <p className="text-slate-500 font-light col-span-full text-center py-8">
                 Loading placeholder reviews...
@@ -660,29 +655,28 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-slate-950/60 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between h-full"
+                  className="bg-slate-950/60 p-6 rounded-2xl border border-handy-border flex flex-col justify-between h-full"
                 >
                   <div>
                     <div className="flex items-center gap-4 mb-4">
                       <img
                         src={
-                          review.authorAttribution?.photoUri ||
-                          "https://placehold.co/40/1e293b/ffffff?text=" +
-                            review.authorAttribution?.displayName?.charAt(0)
+                          review.authorAttribution?.photoUri
+                            ? review.authorAttribution.photoUri
+                            : `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                                review.authorAttribution?.displayName || "User",
+                              )}&background=ea580c&color=ffffff&size=128`
                         }
-                        alt={review.authorAttribution?.displayName}
+                        alt={review.authorAttribution?.displayName || "User"}
                         className="w-12 h-12 rounded-2xl object-cover border border-slate-700"
                       />
                       <div>
                         <h4 className="font-bold text-sm text-white tracking-wide">
                           {review.authorAttribution?.displayName}
                         </h4>
-                        <div className="flex text-handy-orange text-xs mt-0.5">
-                          {"★".repeat(review.rating)}
-                        </div>
                       </div>
                     </div>
-                    <p className="text-slate-300 font-light text-sm leading-relaxed mb-4 line-clamp-4">
+                    <p className="text-slate-300 font-light text-sm leading-relaxed mb-4 h-30 overflow-scroll">
                       &quot;{review.text?.text}&quot;
                     </p>
                   </div>
@@ -709,7 +703,7 @@ export default function Home() {
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 leading-tight tracking-tight">
-              Looking for hardworking people to join our Dublin team.
+              Looking for hardworking people to join our Ireland team.
             </h2>
             <p className="text-base sm:text-lg text-slate-400 mb-8 max-w-2xl leading-relaxed font-light">
               If you have experience, are willing to learn, and take pride in

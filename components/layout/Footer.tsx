@@ -70,7 +70,7 @@ export default function Footer() {
               className="flex items-center gap-3 mb-8 w-fit hover:opacity-80 transition-opacity"
             >
               <Image
-                src="/assets/company-logo.jpeg"
+                src="/prime-build-construction-logo.jpg"
                 width={200}
                 height={100}
                 sizes="(max-width: 768px) 200px, 200px" // Prevents Next.js warnings
