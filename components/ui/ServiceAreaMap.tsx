@@ -6,14 +6,14 @@ import "leaflet/dist/leaflet.css";
 import { GeoJsonObject } from "geojson";
 import L from "leaflet";
 
-const customPinIcon = L.divIcon({
-  html: `<div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center animate-bounce">
-           <div class="w-2 h-2 bg-white rounded-full"></div>
-         </div>`,
-  className: "", // Clear default Leaflet styles so our Tailwind classes work
-  iconSize: [24, 24],
-  iconAnchor: [12, 24], // Centers the bottom point of the pin exactly on the coordinates
-});
+// const customPinIcon = L.divIcon({
+//   html: `<div class="w-6 h-6 bg-orange-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center animate-bounce">
+//            <div class="w-2 h-2 bg-white rounded-full"></div>
+//          </div>`,
+//   className: "", // Clear default Leaflet styles so our Tailwind classes work
+//   iconSize: [24, 24],
+//   iconAnchor: [12, 24], // Centers the bottom point of the pin exactly on the coordinates
+// });
 export default function ServiceAreaMap() {
   const mapCenter: [number, number] = [53.4239, -7.9407]; // Centered on Athlone
   const companyLocation: [number, number] = [53.3498, -6.2603];
@@ -58,18 +58,6 @@ export default function ServiceAreaMap() {
             }}
           />
         )}
-        <Marker position={companyLocation} icon={customPinIcon}>
-          <Popup>
-            <div className="text-slate-900 font-sans p-1">
-              <strong className="block text-sm font-bold">
-                Prime Build Construction
-              </strong>
-              <span className="text-xs text-slate-600">
-                Dublin Headquarters
-              </span>
-            </div>
-          </Popup>
-        </Marker>
       </MapContainer>
     </div>
   );

@@ -107,15 +107,12 @@ export default function Footer() {
               </div>
               <span>+1 234 567</span>
             </a>
-            <div className="flex items-start gap-4">
+            <div className="flex items-center gap-4">
               <div className="p-2.5 bg-slate-900 rounded-lg border border-slate-800 mt-1">
                 <LuMapPin className="text-handy-orange shrink-0" size={18} />
               </div>
               <div className="flex flex-col gap-1 text-slate-400 pt-2">
-                <span className="text-white font-medium">
-                  Dublin Road, Dublin
-                </span>
-                <span>Dublin 2: Electric Boogaloo</span>
+                <span>Based in Laois</span>
               </div>
             </div>
           </address>

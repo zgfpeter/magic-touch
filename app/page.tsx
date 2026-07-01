@@ -19,6 +19,7 @@ import {
   LuMessageSquare,
   LuMapPin,
   LuArrowRight,
+  LuDrill,
 } from "react-icons/lu";
 
 import HandymanDivider from "@/components/ui/HandymanDivider";
@@ -40,20 +41,6 @@ const portfolio = [
 
 const services = [
   {
-    Icon: LuHammer,
-    iconColor: "text-amber-500",
-    title: "Construction & Structural",
-    desc: "From groundworks to final product. We handle reinforced concrete, block wall construction, and precision timber frame structures across Ireland.",
-    imageUrl: "/assets/construction-structural.jpeg",
-    animation: {
-      rest: { rotate: 0 },
-      hover: {
-        rotate: [0, -40, 15, -20, 10, 0],
-        transition: { duration: 0.6 },
-      },
-    },
-  },
-  {
     Icon: LuHouse,
     iconColor: "text-blue-400",
     title: "Garden Rooms & Granny Flats",
@@ -67,6 +54,53 @@ const services = [
       },
     },
   },
+  {
+    Icon: LuDrill,
+    iconColor: "text-emerald-700",
+    title: "Renovations",
+    desc: "Transform your space with our comprehensive renovation solutions. Whether you're modernizing a single room or undertaking a full-scale home refurbishment, we provide expert craftsmanship tailored to your space and style.",
+    imageUrl: "/assets/maintenance.jpeg",
+    animation: {
+      rest: { x: 0, y: 0 },
+      hover: {
+        // Rapid oscillation to simulate vibration
+        x: [0, -1.5, 1.5, -1.5, 1.5, -1.5, 1.5, 0],
+        y: [0, 1.5, -1.5, 1.5, -1.5, 1.5, -1.5, 0],
+        transition: {
+          duration: 0.5,
+          //repeat: , // Loops as long as the user hovers
+          //ease: "linear",
+        },
+      },
+    },
+  },
+
+  {
+    Icon: LuWrench,
+    iconColor: "text-stone-400",
+    title: "Property Maintenance",
+    desc: "Keep your property in top shape with our maintenance services, covering everything from small construction jobs to general repairs for Ireland homeowners and landlords.",
+    imageUrl: "/assets/repairs.jpeg",
+    animation: {
+      rest: { rotate: 0 },
+      hover: { rotate: [0, 45, 0, 45, 0], transition: { duration: 0.6 } },
+    },
+  },
+  {
+    Icon: LuHammer,
+    iconColor: "text-amber-500",
+    title: "Small Constructions & Structural",
+    desc: "From groundworks to final product. We handle reinforced concrete, block wall construction, and precision timber frame structures across Ireland.",
+    imageUrl: "/assets/construction-structural.jpeg",
+    animation: {
+      rest: { rotate: 0 },
+      hover: {
+        rotate: [0, -40, 15, -20, 10, 0],
+        transition: { duration: 0.6 },
+      },
+    },
+  },
+
   {
     Icon: LuPaintbrush,
     iconColor: "text-cyan-500",
@@ -82,38 +116,28 @@ const services = [
       },
     },
   },
-  {
-    Icon: LuWrench,
-    iconColor: "text-stone-400",
-    title: "Property Maintenance",
-    desc: "Keep your property in top shape with our maintenance services, covering everything from small construction jobs to general repairs for Ireland homeowners and landlords.",
-    imageUrl: "/assets/repairs.jpeg",
-    animation: {
-      rest: { rotate: 0 },
-      hover: { rotate: [0, 45, 0, 45, 0], transition: { duration: 0.6 } },
-    },
-  },
-  {
-    Icon: LuFence,
-    iconColor: "text-emerald-500",
-    title: "Exterior Cleaning & Power Washing",
-    desc: "Gutter cleaning up to 2 storeys, power washing, and revitalization for driveways, patios, walls, and exterior surfaces.",
-    imageUrl: "/assets/powerwashing.jpeg",
-    animation: {
-      rest: { x: 0, y: 0 },
-      hover: {
-        x: [0, -2, 2, -2, 2, -2, 2, 0],
-        y: [0, 2, -2, 2, -2, 2, -2, 0],
-        transition: { duration: 0.4 },
-      },
-    },
-  },
+
+  // {
+  //   Icon: LuFence,
+  //   iconColor: "text-emerald-500",
+  //   title: "Exterior Cleaning & Power Washing",
+  //   desc: "Gutter cleaning up to 2 storeys, power washing, and revitalization for driveways, patios, walls, and exterior surfaces.",
+  //   imageUrl: "/assets/powerwashing.jpeg",
+  //   animation: {
+  //     rest: { x: 0, y: 0 },
+  //     hover: {
+  //       x: [0, -2, 2, -2, 2, -2, 2, 0],
+  //       y: [0, 2, -2, 2, -2, 2, -2, 0],
+  //       transition: { duration: 0.4 },
+  //     },
+  //   },
+  // },
 ];
 
 const whyChooseUs = [
   "All-in-One Project Management",
   "Uncompromising Quality Standards",
-  "Fully Insured & Safety Certified",
+  "Health & Safety Certified",
   "Rapid, Team-Based Execution",
   "Flawless Attention To Detail",
   "Clean & Respectful Site Practices",
@@ -269,7 +293,7 @@ export default function Home() {
             >
               <div className="flex items-center gap-2 mb-4 text-handy-orange font-bold tracking-widest text-xs uppercase bg-orange-950/30 px-4 py-2 rounded-full border border-orange-900/40">
                 <LuShieldCheck size={16} aria-hidden="true" />
-                <span>Health & Safety Certified • Fully Insured</span>
+                <span>Health & Safety Certified</span>
               </div>
 
               <h2
@@ -424,7 +448,7 @@ export default function Home() {
           </div>
 
           {/* 2-Column Grid Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-2">
             {services.map((service, idx) => (
               <motion.article
                 key={idx}
@@ -434,7 +458,7 @@ export default function Home() {
                 className="flex flex-col bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden group hover:border-slate-700 transition-all shadow-xl h-full "
               >
                 {/* Image Area (Compact Height) */}
-                <div className="relative w-full h-52 sm:h-72 shrink-0 overflow-hidden bg-slate-900">
+                <div className="relative w-full h-96 md:h-72 overflow-hidden bg-slate-900">
                   {service.imageUrl ? (
                     <Image
                       src={service.imageUrl}
@@ -563,7 +587,7 @@ export default function Home() {
           <p className="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-light max-w-2xl mx-auto">
             Get in touch with our team today. We&apos;ll discuss your
             requirements, provide expert advice, and deliver a comprehensive
-            quote for your Ireland build.
+            quote for your build.
           </p>
 
           <Link
