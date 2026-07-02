@@ -167,7 +167,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center text-center gap-6"
+            className="flex flex-col gap-6"
           >
             {/* Standardized Badge */}
             <div className="flex items-center gap-2 bg-slate-900 px-5 py-2.5 rounded-full border border-slate-800 shadow-sm w-fit">
@@ -199,7 +199,7 @@ export default function Home() {
               <div className="relative z-10">
                 <h1
                   id="hero-heading"
-                  className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight text-white"
+                  className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight text-white text-center"
                 >
                   Prime Build{" "}
                   <span className="text-handy-orange">Construction</span>
@@ -207,11 +207,12 @@ export default function Home() {
               </div>
             </div>
 
-            <p className="text-base sm:text-lg text-slate-400 mb-6 leading-relaxed font-light max-w-3xl mx-auto px-4">
-              Reliable Ireland construction company delivering high-quality
-              work, from groundworks to the final product. Whether it&apos;s a
-              small repair or a full build, we bring exact precision and
-              enduring craftsmanship to every project.
+            <p className="text-base sm:text-lg text-slate-400 mb-6 leading-relaxed font-light">
+              Reliable Ireland construction company specializing in property
+              renovations. From complete home modernizations and flawless
+              interior finishes to custom granny flats and small structural
+              builds, we bring exact precision and enduring craftsmanship to
+              every space we transform.
             </p>
 
             {/* Standardized Buttons */}
